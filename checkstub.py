@@ -25,7 +25,11 @@ def check_stub():
                          fica_medi=request.form['fica_medi'],
                          fica_social=request.form['fica_social'],
                          fica_medi_ytd=request.form['fica_medi_ytd'],
-                         fica_social_ytd=request.form['fica_social_ytd'])
+                         fica_social_ytd=request.form['fica_social_ytd'],
+                         fed_tax=request.form['fed_tax'],
+                         fed_ytd=request.form['fed_ytd'],
+                         state_tax=request.form['state_tax'],
+                         state_ytd=request.form['state_ytd'])
         session.add(newCheck)
         session.commit()
         return render_template('checkstub.html')

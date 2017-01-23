@@ -58,8 +58,8 @@ method="post">
 <div id="deductions"> 
 	<div id="fica_medi"> <span id="fica_medi_total">{{check.fica_medi}}</span> <span id="fica_medi_ytd">{{check.fica_medi_ytd}}</span></div>
 	<div id="fica_social"> <span id="fica_social_total">{{check.fica_social}}</span><span id="fica_social_ytd">{{check.fica_social_ytd}}</span></div>
-	<div id="fed_tax"> <input id="federal_tax" type="text" value="0"> <input id="fed_ytd" type="text" value="0"></div>
-	<div id="state_tax_div"> <input id="state_tax" type="text" value="0"> <input id="state_tax_ytd" type="text" value="0"> </div>
+	<div id="fed_tax"> <span id="federal_tax">{{check.fed_tax}}</span><span id="fed_ytd">{{check.fed_ytd}}</span></div>
+	<div id="state_tax_div"> <span name="state_tax">{{check.state_tax}}</span> <span id="state_tax_ytd">{{check.state_ytd}}</span></div>
 </div>
 <div id="bottom-left">
 	<input id="ytd_gross" type="text"> 
