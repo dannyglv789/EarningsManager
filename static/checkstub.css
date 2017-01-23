@@ -1,0 +1,201 @@
+h1{
+	font-family: 'Archivo Narrow', sans-serif;
+	text-align:center;
+	font-size:5em;
+	
+}
+#pricing{
+	font-size:4em;
+	text-align:center;
+}
+#check-container{
+	margin-left:auto;
+	margin-right:auto;
+	background-image: url("/static/thestubpreview.jpg");
+	background-repeat: no-repeat;
+	width:980px;
+	height:400px;
+	
+}
+.transparent-checkout input{
+	border:2px solid transparent;
+}
+#check-checkout{
+	margin-left:auto;
+	margin-right:auto;
+	background-image: url("thecheckstub.jpg");
+	background-repeat: no-repeat;
+	width:980px;
+	height:400px;
+	
+}
+
+#top-bar{
+	width:980px;
+	height:50px;
+	padding-top: 80px;
+}
+
+#name_address{
+	width:370px;
+	padding:0px;
+	border:none;
+	margin-left:2px;
+}
+#ssn{
+width:104px;
+padding: 0px;
+border:none;
+margin-left:40px;
+}
+
+#reporting_period{
+	width:165px;
+	padding:0px;
+	border:none;
+	margin-left:40px;
+}
+
+#pay_date{
+	width:94px;
+	padding: 0px;
+	border:none;
+	margin-left: 24px;
+	
+}
+
+#pay_date_span{
+	
+	margin-left: 4px;
+}
+
+#employee_num{
+	width:78px;
+	padding:0px;
+	border:none;
+	margin-left:40px;
+}
+
+#gross-earnings{
+	width:980px;
+	padding:0px;
+	margin-top:15px;
+}
+#gross_area{
+	margin-left:222px;
+
+}
+
+#rate{
+	width:40px;
+}
+
+#hours{
+	width:40px;
+}
+#hours_span{
+	margin-left:40px;
+}
+
+#current_pay{
+	width:80px;
+	margin-left:50px;
+}
+
+#deductions{
+	float:right;
+	margin-right: 40px;
+
+}
+
+#fica_medi{
+	height:32px;
+}
+#fica_medi_total{
+	width:40px;
+}
+#fica_medi_ytd{
+	margin-left:60px;
+	width:40px;
+}
+
+#fica_social{
+	height:32px;
+}
+#fica_social_ytd{
+	margin-left:60px;
+    width:40px;
+}
+
+#fica_social_total{
+	width:40px;
+}
+#fed_tax{
+	height:32px;
+}
+#federal_tax{
+	width:40px;
+}
+#fed_ytd{
+	margin-left:60px;
+	width:40px;
+}
+
+#state_tax_div{
+	height:32px;
+}
+
+#state_tax{
+	width:40px;
+}
+#state_tax_ytd{
+	width:40px;
+	margin-left:60px;
+}
+#bottom-left{
+	margin-top:192px;
+	width:980px;
+	
+}
+
+#ytd_gross{
+	width:70px;
+	margin-left:45px;
+	
+}
+#ytd_deductions{
+	width:70px;
+	margin-left:65px;
+}
+#ytd_net{
+	width:70px;
+	margin-left:93px;
+}
+
+#total{
+	width:60px;
+	margin-left:174px;
+}
+#bottom_deductions{
+	width:60px;
+	margin-left:54px;
+}
+#net_pay{
+	width:60px;
+	margin-left:80px;
+}
+#checkout{
+	float:right;
+	margin-top:25px;
+	border-radius:5px;
+	background-color:#87C540;
+	font-size:18px;
+	width:90px;
+}
+#footer{
+	text-align:center;
+	margin-top:100px;
+}
+#footer a{
+	text-decoration:none;
+}

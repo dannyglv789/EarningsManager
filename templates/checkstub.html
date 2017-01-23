@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="/static/checkstub.js"></script>
+	<link rel=stylesheet type=text/css href="/static/checkstub.css">
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<h1> Make your own pay stub</h1>
+<div id="pricing">
+<span> Only $4.99 </span>
+</div>
+<!-- <form>
+<p> EMPLOYEE NAME / ADDRESS <input id="name_address" type="text" value = "John Smith 123 Example st"> 
+SSN <input id="ssn" type="text" value = "***-**-1234">
+REPORTING PERIOD <input id="reporting_period" type="text" value="01/01/2016 - 01/07/2016"> 
+PAY DATE <input id="pay_date" type="text" value="01/09/2016"> 
+EMPLOYEE # <input id="employee_num" type="text" value="12345"> 
+</p>
+<br>
+<p> RATE <input id="rate" type="text">
+HOURS <input id="hours" type="text">
+CURRENT PAY  <input id="current_pay" type="text" value="0">
+</p>
+<p> FICA - MEDICARE <input id="fica_medi_total" type="text" value="0"> </p>
+<p> FICA - SOCIAL SECURITY <input id="fica_social_total" type = "text" value="0"> </p>
+<p> FEDERAL TAX <input id="federal_tax" type="text" value="0"> </p>
+<p> STATE TAX <input id="state_tax" type="text"> </p>
+<p> TOTAL <input id="total" type="text">
+    DEDUCTIONS <input id="deductions" type="text">
+    NET PAY <input id="net_pay" type="text"> </p>
+YTD GROSS <input id="ytd_gross" type="text"> 
+YTD DEDUCTIONS <input id="ytd_deductions" type="text"> 
+YTD NET PAY <input id="ytd_net" type="text"> 
+
+</form>
+--> 
+<div> YTD NUM <select id="ytd_num">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select> 
+<div id ="check-container">
+<form action="{{url_for('check_stub')}}" method="post">
+<div id="top-bar">
+	<span id="emp_name"> <input name="emp_name" id="name_address" type="text" value = "John Smith 123 Example st"> </span>
+	<span id="social"> <input name="social" id="ssn" type="text" value = "***-**-1234"> </span>
+	<span id="rep_period"> <input name="rep_period" id="reporting_period" type="text" value="01/01/2016 - 01/07/2016"> </span>
+	<span id="pay_date_span"> <input name="pay_date"id="pay_date" type="text" value="01/09/2016"> </span>
+	<span id="emp_num"> <input name="emp_num" id="employee_num" type="text" value="12345"> </span>
+</div>
+<div id="gross-earnings">
+  <div id="gross_area">
+	<span id="rate_span"> <input name="rate" id="rate" type="text"> </span>
+	<span id="hours_span"> <input name="hours" id="hours" type="text"> </span>
+	<span id="pay_span"> <input id="current_pay" type="text" value="0"> </span> 
+  </div>
+</div>
+<div id="deductions"> 
+	<div id="fica_medi"> <input id="fica_medi_total" type="text" value="0"> <input id="fica_medi_ytd" type="text" value="0"></div>
+	<div id="fica_social"> <input id="fica_social_total" type = "text" value="0"> <input id="fica_social_ytd" type="text" value="0"></div>
+	<div id="fed_tax"> <input id="federal_tax" type="text" value="0"> <input id="fed_ytd" type="text" value="0"></div>
+	<div id="state_tax_div"> <input id="state_tax" type="text" value="0"> <input id="state_tax_ytd" type="text" value="0"> </div>
+</div>
+<div id="bottom-left">
+	<input id="ytd_gross" type="text"> 
+	<input id="ytd_deductions" type="text"> 
+	<input id="ytd_net" type="text"> 
+	<input id="total" type="text"> 
+	<input id="bottom_deductions" type="text">
+	<input id="net_pay" type="text"> 
+</div>
+
+<!-- <div> TOTAL <input id="total" type="text"> </div>
+	<div> DEDUCTIONS <input id="deductions" type="text"> </div>
+	<div> NET PAY <input id="net_pay" type="text"> </div>
+	<div> YTD GROSS <input id="ytd_gross" type="text"> </div> 
+	<div> YTD DEDUCTIONS <input id="ytd_deductions" type="text"> </div>
+	<div> YTD NET PAY <input id="ytd_net" type="text"> </div> -->
+	<input type="submit" id="checkout" value="checkout">
+</form>
+</div>
+</div>
+<div id="footer">
+<a href="#"> faq </a> <a href="#"> chini </a> <a href="#"> mini </a>
+</div>
+</body>
+</html>
