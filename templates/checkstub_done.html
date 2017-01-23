@@ -52,12 +52,12 @@ method="post">
   <div id="gross_area">
 	<div class="finished_stub_items" id="rate_span"><div id="rate">{{check.rate}}</div></div>
 	<div class="finished_stub_items" id="hours_span"><div id="hours">{{check.hours}}</div></div>
-	<span id="pay_span"> <input id="current_pay" type="text" value="0"> </span> 
+	<div class="finished_stub_items" id="pay_span"> <div id="current_pay">{{check.current_pay}}</div> </div> 
   </div>
 </div>
 <div id="deductions"> 
-	<div id="fica_medi"> <input id="fica_medi_total" type="text" value="0"> <input id="fica_medi_ytd" type="text" value="0"></div>
-	<div id="fica_social"> <input id="fica_social_total" type = "text" value="0"> <input id="fica_social_ytd" type="text" value="0"></div>
+	<div id="fica_medi"> <span id="fica_medi_total">{{check.fica_medi}}</span> <span id="fica_medi_ytd">{{check.fica_medi_ytd}}</span></div>
+	<div id="fica_social"> <span id="fica_social_total">{{check.fica_social}}</span><span id="fica_social_ytd">{{check.fica_social_ytd}}</span></div>
 	<div id="fed_tax"> <input id="federal_tax" type="text" value="0"> <input id="fed_ytd" type="text" value="0"></div>
 	<div id="state_tax_div"> <input id="state_tax" type="text" value="0"> <input id="state_tax_ytd" type="text" value="0"> </div>
 </div>

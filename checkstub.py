@@ -20,7 +20,12 @@ def check_stub():
                          pay_date=request.form['pay_date'],
                          emp_num=request.form['emp_num'],
                          rate=request.form['rate'],
-                         hours=request.form['hours'])
+                         hours=request.form['hours'],
+                         current_pay=request.form['current_pay'],
+                         fica_medi=request.form['fica_medi'],
+                         fica_social=request.form['fica_social'],
+                         fica_medi_ytd=request.form['fica_medi_ytd'],
+                         fica_social_ytd=request.form['fica_social_ytd'])
         session.add(newCheck)
         session.commit()
         return render_template('checkstub.html')
