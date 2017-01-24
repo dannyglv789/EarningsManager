@@ -120,7 +120,8 @@ margin-left:40px;
 	width:40px;
 }
 #fica_medi_ytd{
-	margin-left:60px;
+	float:right;
+/*	margin-left:60px; */
 	width:40px;
 }
 

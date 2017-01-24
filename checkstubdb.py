@@ -5,7 +5,7 @@ import os
 import sys
 
 # These will come in handy when we are writing our Mapper code
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 
 # We will use declarative base in the configuration and class code
 from sqlalchemy.ext.declarative import declarative_base
@@ -20,6 +20,12 @@ from sqlalchemy import create_engine
 # that correspond to tables in our database!
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    is_member = Column(Boolean,default=False)
+    
 class Check(Base):
     __tablename__ = 'check'
     id = Column(Integer, primary_key = True)
