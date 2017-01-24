@@ -28,6 +28,7 @@ class User(Base):
     
 class Check(Base):
     __tablename__ = 'check'
+    creator = Column(Integer,ForeignKey('user.id'))
     id = Column(Integer, primary_key = True)
     emp_name = Column(String(200))
     social = Column(String(80))
