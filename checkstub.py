@@ -145,30 +145,22 @@ def square():
     access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
     
     if request.method == "POST":
-        nonce = request.form['nonce']
-        print nonce
-        return 'nonce printed'
-
-    """ 
+        card_nonce = request.form['nonce']
         response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions',
-  headers={
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + access_token,
-  },
-  params = json.dumps({
-    'card_nonce': card_nonce,
-    'amount_money': {
-      'amount': 100,
-      'currency': 'USD'
-    },
-    'idempotency_key': str(uuid.uuid1())
-  })
-)
+                                headers={'Accept': 'application/json',
+                                         'Content-Type': 'application/json',
+                                         'Authorization': 'Bearer ' + access_token,
+                                         },
+                                params = json.dumps({'card_nonce': card_nonce,
+                                                     'amount_money': {'amount': 100,
+                                                                      'currency': 'USD'
+                                                                      },
+                                                     'idempotency_key': str(uuid.uuid1())
+                                                     })
+                                )
+        
         print response.body
-
-    """
-
+        return 'response printed'
     return render_template('squaretrans.html')
 
 if __name__ == '__main__':

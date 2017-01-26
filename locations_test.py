@@ -1,7 +1,7 @@
 import unirest
 import json
 #from flask import json
-access_token = 'sq0atp-C2DFF2ap0WWupWFr3A595g'
+access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
 
 response = unirest.get('https://connect.squareup.com/v2/locations', headers= {
   'Accept': 'application/json',
@@ -9,4 +9,6 @@ response = unirest.get('https://connect.squareup.com/v2/locations', headers= {
 })
 
 result = response.body['locations']
-location_id = result[0]['id']
+# this location id allows credit card processing
+location_id = result[1]['id']
+print result[1]['id']
