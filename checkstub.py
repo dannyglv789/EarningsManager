@@ -136,6 +136,10 @@ def viewCheck(check_id):
     check = session.query(Check).filter_by(id=check_id).one()
     return render_template('checkstub_done.html',check=check)
 
+@app.route('/squarepayment/')
+def square():
+    return render_template('squaretrans.html')
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host = '0.0.0.0', port = 5000)
