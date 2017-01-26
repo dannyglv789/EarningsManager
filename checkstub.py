@@ -1,9 +1,13 @@
 import random, string, httplib2
+import unirest
+import json
+import uuid
 from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json
 app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from checkstubdb import Check,User, Base
+from locations_test import location_id
 
 # engine and db connection
 engine = create_engine('sqlite:///checkstub.db')
@@ -136,8 +140,35 @@ def viewCheck(check_id):
     check = session.query(Check).filter_by(id=check_id).one()
     return render_template('checkstub_done.html',check=check)
 
-@app.route('/squarepayment/')
+@app.route('/squarepayment/', methods=['GET','POST'])
 def square():
+    access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
+    
+    if request.method == "POST":
+        nonce = request.form['nonce']
+        print nonce
+        return 'nonce printed'
+
+    """ 
+        response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions',
+  headers={
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token,
+  },
+  params = json.dumps({
+    'card_nonce': card_nonce,
+    'amount_money': {
+      'amount': 100,
+      'currency': 'USD'
+    },
+    'idempotency_key': str(uuid.uuid1())
+  })
+)
+        print response.body
+
+    """
+
     return render_template('squaretrans.html')
 
 if __name__ == '__main__':
