@@ -25,6 +25,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     is_member = Column(Boolean,default=False)
+    check_count = Column(Integer,default=0)
     
 class Check(Base):
     __tablename__ = 'check'

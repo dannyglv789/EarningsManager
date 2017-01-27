@@ -2,7 +2,7 @@ import random, string, httplib2
 import unirest
 import json
 import uuid
-from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json
+from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json, redirect
 app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
@@ -67,14 +67,14 @@ def fbconnect():
     # see if user exists
     try:
         user = session.query(User).filter_by(name=data['email']).one()
-        login_session['username'] = data['email']
+        login_session['email'] = data['email']
     # if user doesnt exist create user
     except:
         email = data['email']
         new_user = User(name=email)
         session.add(new_user)
         session.commit()
-        login_session['username'] = email
+        login_session['email'] = email
 
     # Get user picture
     url = 'https://graph.facebook.com/v2.4/me/picture?%s&redirect=0&height=200&width=200' % token
@@ -87,7 +87,7 @@ def fbconnect():
 
     output = ''
     output += '<h1>Welcome, '
-    output += login_session['username']
+    output += login_session['email']
 
     output += '!</h1>'
     output += '<img src="'
@@ -102,15 +102,14 @@ def fbconnect():
 def check_stub():
     """ view for creating and editing a stub"""
     if request.method == 'POST':
-        if 'username' not in login_session:
-            return 'sign in with facebook'
+        if 'email' not in login_session:
+            return redirect(url_for('test_login'))
         
-        user = session.query(User).filter_by(name=login_session['username'])
-        checks = session.query(Check).filter_by(creator=user.id)
+        user = session.query(User).filter_by(name=login_session['email']).one()
 
         # if a user is not a member and has made thier first complimentary check
         # they are redirected to the sign up page
-        if user.is_member == False and len(checks) >= 1:
+        if user.is_member == False and user.check_count >= 1:
             return 'sign up'
         else:
             newCheck = Check(emp_name=request.form['emp_name'],
@@ -128,8 +127,11 @@ def check_stub():
                              fed_tax=request.form['fed_tax'],
                              fed_ytd=request.form['fed_ytd'],
                              state_tax=request.form['state_tax'],
-                             state_ytd=request.form['state_ytd'])
+                             state_ytd=request.form['state_ytd'],
+                             creator=user.id)
+            user.check_count +=1
             session.add(newCheck)
+            session.add(user)
             session.commit()
             return render_template('checkstub.html')
     return render_template('checkstub.html')
@@ -140,11 +142,28 @@ def viewCheck(check_id):
     check = session.query(Check).filter_by(id=check_id).one()
     return render_template('checkstub_done.html',check=check)
 
+@app.route('/mystubs/<user_id>')
+def my_stubs(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    stubs = session.query(Check).filter_by(creator=user.id)
+    return render_template('mychecks.html')
+
+@app.route('/users')
+def view_all_users():
+    users = session.query(User).all()
+    for i in users:
+        print i.name
+        print i.check_count
+    return 'user info printed'
+
 @app.route('/squarepayment/', methods=['GET','POST'])
 def square():
+    """ square payment page and post to process payment"""
     access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
     
     if request.method == "POST":
+
+        # make the request to charge endpoint, completing transaction
         card_nonce = request.form['nonce']
         response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions',
                                 headers={'Accept': 'application/json',
