@@ -146,15 +146,7 @@ def viewCheck(check_id):
 def my_stubs(user_id):
     user = session.query(User).filter_by(id=user_id).one()
     stubs = session.query(Check).filter_by(creator=user.id)
-    return render_template('mychecks.html')
-
-@app.route('/users')
-def view_all_users():
-    users = session.query(User).all()
-    for i in users:
-        print i.name
-        print i.check_count
-    return 'user info printed'
+    return render_template('mychecks.html', stubs=stubs)
 
 @app.route('/squarepayment/', methods=['GET','POST'])
 def square():
