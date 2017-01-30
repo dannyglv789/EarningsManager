@@ -23,6 +23,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
+    f_id = Column(String)
     name = Column(String)
     is_member = Column(Boolean,default=False)
     check_count = Column(Integer,default=0)

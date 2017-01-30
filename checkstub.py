@@ -57,7 +57,6 @@ def fbconnect():
     data = json.loads(result)
     login_session['provider'] = 'facebook'
 #    login_session['username'] = data["name"]
-#    login_session['email'] = data["email"]
     login_session['facebook_id'] = data["id"]
 
     # The token must be stored in the login_session in order to properly logout, let's strip out the information before the equals sign in our token
@@ -71,7 +70,7 @@ def fbconnect():
     # if user doesnt exist create user
     except:
         email = data['email']
-        new_user = User(name=email)
+        new_user = User(name=email,f_id=data['id'])
         session.add(new_user)
         session.commit()
         login_session['email'] = email
@@ -173,6 +172,14 @@ def square():
         print response.body
         return 'response printed'
     return render_template('squaretrans.html')
+
+@app.route('/users')
+def print_users():
+    users = session.query(User).all()
+    for i in users:
+        print i.name
+        print i.f_id
+    return 'users printed'
 
 if __name__ == '__main__':
     app.debug = True
