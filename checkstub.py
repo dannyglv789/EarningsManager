@@ -137,12 +137,22 @@ def check_stub():
 
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
-    """ view for checkstub completed by user """
+    """view for checkstub completed by user. Only creator has access"""
+    # non logged in user is redirected to login
+    if 'facebook_id' not in login_session:
+        return 'you must login'
+
+    # user is logged in and either granted or denied permission
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     check = session.query(Check).filter_by(id=check_id).one()
-    return render_template('checkstub_done.html',check=check)
+    if user.id != check.creator:
+        return 'access denied'
+    else:
+        return render_template('checkstub_done.html',check=check)
 
 @app.route('/mystubs/')
 def my_stubs():
+    """ stubs are queried by user id. Only creator has access"""
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
