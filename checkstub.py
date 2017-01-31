@@ -159,6 +159,10 @@ def viewCheck(check_id):
 @app.route('/mystubs/')
 def my_stubs():
     """ stubs are queried by user id. Only creator has access"""
+    # non logged in user is redirected to login
+    if 'facebook_id' not in login_session:
+        return 'you must login'
+    
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
