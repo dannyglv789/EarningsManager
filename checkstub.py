@@ -149,10 +149,10 @@ def viewCheck(check_id):
         # check if stub exists
         check = session.query(Check).filter_by(id=check_id).one()
     except:
-        return '404 not found'
+        return '404 not found', 404
     
     if user.id != check.creator:
-        return 'access denied'
+        return abort(403)
     else:
         return render_template('checkstub_done.html',check=check)
 
