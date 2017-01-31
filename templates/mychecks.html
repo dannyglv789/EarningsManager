@@ -4,7 +4,7 @@
 <body>
 	<div id='stubs'>
 	{%for i in stubs%}
-		<a href="#">{{i.pay_date}}</a>
+		<a href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a>
 	{%endfor%}
 	</div>
 </body>
