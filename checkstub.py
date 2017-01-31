@@ -144,7 +144,13 @@ def viewCheck(check_id):
 
     # user is logged in and either granted or denied permission
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-    check = session.query(Check).filter_by(id=check_id).one()
+
+    try:
+        # check if stub exists
+        check = session.query(Check).filter_by(id=check_id).one()
+    except:
+        return '404 not found'
+    
     if user.id != check.creator:
         return 'access denied'
     else:
