@@ -141,9 +141,9 @@ def viewCheck(check_id):
     check = session.query(Check).filter_by(id=check_id).one()
     return render_template('checkstub_done.html',check=check)
 
-@app.route('/mystubs/<user_id>')
-def my_stubs(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
+@app.route('/mystubs/')
+def my_stubs():
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
 
