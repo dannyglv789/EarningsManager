@@ -167,6 +167,45 @@ def my_stubs():
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
 
+@app.route('/checkout/', methods=['GET','POST'])
+def square_checkout():
+    access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
+    if request.method == "POST":
+        response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
+                                headers={'Accept': 'appication/json',
+                                         'Content-Type': 'application/json',
+                                         'Authorization': 'Bearer ' + access_token,
+                                         },
+                                params = json.dumps({
+                                    'idempotency_key': str(uuid.uuid1()),
+                                    'ask_for_shipping_address': False,
+                                    'merchant_support_email': 'dannyglv182@gmail.com',
+                                    'order': {
+                                        'reference_id': "".join(random.choice(string.ascii_uppercase + \
+                                                                              string.digits) for i in range(20)),
+                                        'line_items': [
+                                            {
+                                                'name': "unlimited access",
+                                                'quantity': '1',
+                                                'base_price_money':{
+                                                    'amount': 100,
+                                                    'currency': 'USD'
+
+                                                    }
+
+                                                },
+                                            ]
+                                        },
+                                    
+                                    "pre_populate_buyer_email": "prepopemail@gmail.com"
+                                    }))
+        result = response.body['checkout']
+        checkout_page = result['checkout_page_url']
+        print result['checkout_page_url']
+        print result['id']
+        return redirect(checkout_page)
+    return render_template('checkout-test.html')
+
 @app.route('/squarepayment/', methods=['GET','POST'])
 def square():
     """ square payment page and post to process payment"""
