@@ -7,7 +7,7 @@ app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from checkstubdb import Check,User, Base
-from locations_test import location_id
+from cred import location_id, access_token
 
 # engine and db connection
 engine = create_engine('sqlite:///checkstub.db')
@@ -107,9 +107,47 @@ def check_stub():
         user = session.query(User).filter_by(name=login_session['email']).one()
 
         # if a user is not a member and has made thier first complimentary check
-        # they are redirected to the sign up page
+        # they are redirected to the square checkout ui
         if user.is_member == False and user.check_count >= 1:
-            return 'sign up'
+            response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
+                                headers={'Accept': 'appication/json',
+                                         'Content-Type': 'application/json',
+                                         'Authorization': 'Bearer ' + access_token,
+                                         },
+                                params = json.dumps({
+                                    'idempotency_key': str(uuid.uuid1()),
+                                    'ask_for_shipping_address': True,
+                                    'merchant_support_email': 'dannyglv182@gmail.com',
+                                    'order': {
+                                        'reference_id': "089ab4dc",
+                                        #'reference_id': "".join(random.choice(string.ascii_uppercase + \
+                                        #                                      string.digits) for i in range(20)),
+                                        'line_items': [
+                                            {
+                                                'name': "stub",
+                                                'quantity': '1',
+                                                'base_price_money':{
+                                                    'amount': 400,
+                                                    'currency': 'USD'
+
+                                                    }
+
+                                                },
+                                            ]
+                                        },
+                                    
+                                    "pre_populate_buyer_email": "prepopemail@gmail.com",
+                                    "pre_populate_shipping_address": {
+                                        "first_name": "first name",
+                                        "last_name": "last name"
+                                    }
+                                    }))
+            
+            result = response.body['checkout']
+            checkout_page = result['checkout_page_url']
+            print result['checkout_page_url']
+            print result['id']
+            return redirect(checkout_page)
         else:
             newCheck = Check(emp_name=request.form['emp_name'],
                              social=request.form['social'],
@@ -169,7 +207,6 @@ def my_stubs():
 
 @app.route('/checkout/', methods=['GET','POST'])
 def square_checkout():
-    access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
     if request.method == "POST":
         response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
                                 headers={'Accept': 'appication/json',
@@ -177,6 +214,7 @@ def square_checkout():
                                          'Authorization': 'Bearer ' + access_token,
                                          },
                                 params = json.dumps({
+                                    "redirect_url": "http://localhost:5000/thankyou/",
                                     'idempotency_key': str(uuid.uuid1()),
                                     'ask_for_shipping_address': False,
                                     'merchant_support_email': 'dannyglv182@gmail.com',
@@ -188,7 +226,7 @@ def square_checkout():
                                                 'name': "unlimited access",
                                                 'quantity': '1',
                                                 'base_price_money':{
-                                                    'amount': 100,
+                                                    'amount': 400,
                                                     'currency': 'USD'
 
                                                     }
@@ -206,10 +244,13 @@ def square_checkout():
         return redirect(checkout_page)
     return render_template('checkout-test.html')
 
+@app.route('/thankyou/')
+def thank_you():
+    return render_template('thankyou.html')
+
 @app.route('/squarepayment/', methods=['GET','POST'])
 def square():
     """ square payment page and post to process payment"""
-    access_token = 'sandbox-sq0atb-AuykGFFuHYzEFDweaQpdyA'
     
     if request.method == "POST":
 
