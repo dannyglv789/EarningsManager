@@ -109,12 +109,15 @@ def check_stub():
         # if a user is not a member and has made thier first complimentary check
         # they are redirected to the square checkout ui
         if user.is_member == False and user.check_count >= 1:
+            # eventually put this in a helper function
             response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
                                 headers={'Accept': 'appication/json',
                                          'Content-Type': 'application/json',
                                          'Authorization': 'Bearer ' + access_token,
                                          },
                                 params = json.dumps({
+                                    
+                                    #'redirect_url': '',
                                     'idempotency_key': str(uuid.uuid1()),
                                     'ask_for_shipping_address': True,
                                     'merchant_support_email': 'dannyglv182@gmail.com',
@@ -145,6 +148,7 @@ def check_stub():
             
             result = response.body['checkout']
             checkout_page = result['checkout_page_url']
+            checkout_id = result['id']
             print result['checkout_page_url']
             print result['id']
             return redirect(checkout_page)
@@ -199,58 +203,27 @@ def my_stubs():
     """ stubs are queried by user id. Only creator has access"""
     # non logged in user is redirected to login
     if 'facebook_id' not in login_session:
-        return 'you must login'
+        return 'fb login page'
     
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
 
-@app.route('/checkout/', methods=['GET','POST'])
-def square_checkout():
-    if request.method == "POST":
-        response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
-                                headers={'Accept': 'appication/json',
-                                         'Content-Type': 'application/json',
-                                         'Authorization': 'Bearer ' + access_token,
-                                         },
-                                params = json.dumps({
-                                    "redirect_url": "http://localhost:5000/thankyou/",
-                                    'idempotency_key': str(uuid.uuid1()),
-                                    'ask_for_shipping_address': False,
-                                    'merchant_support_email': 'dannyglv182@gmail.com',
-                                    'order': {
-                                        'reference_id': "".join(random.choice(string.ascii_uppercase + \
-                                                                              string.digits) for i in range(20)),
-                                        'line_items': [
-                                            {
-                                                'name': "unlimited access",
-                                                'quantity': '1',
-                                                'base_price_money':{
-                                                    'amount': 400,
-                                                    'currency': 'USD'
-
-                                                    }
-
-                                                },
-                                            ]
-                                        },
-                                    
-                                    "pre_populate_buyer_email": "prepopemail@gmail.com"
-                                    }))
-        result = response.body['checkout']
-        checkout_page = result['checkout_page_url']
-        print result['checkout_page_url']
-        print result['id']
-        return redirect(checkout_page)
-    return render_template('checkout-test.html')
-
 @app.route('/thankyou/')
 def thank_you():
+
+    # once site is on aws get transaction id, checkout id and reference id
+    # from the url and compare to originals for verification
+
+    # transaction_id = request.args.get('')
+    # checkout_id = request.args.get('')
+    # reference_id = request.args.get('')
+
     return render_template('thankyou.html')
 
 @app.route('/squarepayment/', methods=['GET','POST'])
 def square():
-    """ square payment page and post to process payment"""
+    """ square payment form and post to process payment"""
     
     if request.method == "POST":
 
@@ -273,6 +246,7 @@ def square():
         return 'response printed'
     return render_template('squaretrans.html')
 
+# UTILITY FUNCTIONS FOR TESTING
 @app.route('/users')
 def print_users():
     users = session.query(User).all()
