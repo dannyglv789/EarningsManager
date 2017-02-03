@@ -55,17 +55,20 @@ def fbconnect():
     # print "url sent for API access:%s"% url
     # print "API JSON result: %s" % result
     data = json.loads(result)
-    login_session['provider'] = 'facebook'
+#    login_session['provider'] = 'facebook'
 #    login_session['username'] = data["name"]
-    login_session['facebook_id'] = data["id"]
+#    login_session['facebook_id'] = data["id"]
 
     # The token must be stored in the login_session in order to properly logout, let's strip out the information before the equals sign in our token
     stored_token = token.split("=")[1]
     login_session['access_token'] = stored_token
+    login_session['facebook_id'] = data["id"]
+    login_session['state'] = state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in xrange(32))
 
     # see if user exists
     try:
-        user = session.query(User).filter_by(name=data['email']).one()
+        user = session.query(User).filter_by(f_id=data['id']).one()
         login_session['email'] = data['email']
     # if user doesnt exist create user
     except:
@@ -99,7 +102,12 @@ def fbconnect():
 @app.route('/')
 @app.route('/checkstub/', methods=['GET','POST'])
 def check_stub():
-    """ view for creating and editing a stub"""
+    """ view for creating and editing a stub
+        visitors are first redirected to fb login
+        In POST membership and check count are checked. If complementary check
+        has been used, users are redirected to square payment ui.
+        After verification, membership is set to True.
+    """
     if request.method == 'POST':
         if 'email' not in login_session:
             return redirect(url_for('test_login'))
