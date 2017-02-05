@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head> </head>
+<head> 
+	<link rel=stylesheet type=text/css href="/static/checkstub.css"> 
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+</head>
 <body>
+	<h1> My Stubs </h1>
 	<div id='stubs'>
 	{%for i in stubs%}
-		<a href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a>
+		<a style="font-family: 'Archivo Narrow', sans-serif; font-size:4em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a>
 	{%endfor%}
 	</div>
 </body>
