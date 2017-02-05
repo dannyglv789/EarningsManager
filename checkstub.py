@@ -185,6 +185,20 @@ def check_stub():
             return render_template('checkstub.html')
     return render_template('checkstub.html')
 
+@app.route('/templateone')
+def main_template():
+    """ Page for creating stubs with template one for
+        members
+    """
+    return render_template('templateone.html')
+
+@app.route('/templatetwo')
+def template_two():
+    """ page for creating stubs with
+        template two Members only
+    """
+    return render_template('templatetwo.html')
+
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
