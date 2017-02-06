@@ -3,6 +3,7 @@ import unirest
 import json
 import uuid
 from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json, redirect
+from flask import flash
 app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
@@ -113,7 +114,7 @@ def check_stub():
     login_session['state'] = state
     
     if request.method == 'POST':
-        if 'email' not in login_session:
+        if 'facebook_id' not in login_session or 'state' not in login_session:
             return redirect(url_for('test_login'))
         
         user = session.query(User).filter_by(name=login_session['email']).one()
@@ -186,7 +187,7 @@ def check_stub():
             session.add(newCheck)
             session.add(user)
             session.commit()
-            return render_template('checkstub.html')
+            return redirect(url_for('my_home'))
     return render_template('checkstub.html',state=state)
 
 @app.route('/templateone')
@@ -288,6 +289,20 @@ def print_users():
         print i.f_id
     return 'users printed'
 
+@app.route('/membershipstatus/')
+def switch_membership_status():
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+    if user.is_member == False:
+        user.is_member = True
+        session.add(user)
+        session.commit()
+        return 'membership status switched'
+    else:
+        user.is_member = False
+        session.add(user)
+        session.commit()
+        return 'membership status switched'
+    
 if __name__ == '__main__':
     app.debug = True
     app.run(host = '0.0.0.0', port = 5000)
