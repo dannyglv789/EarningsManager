@@ -44,10 +44,12 @@
       success: function(result) {
         // Handle or verify the server response if necessary.
         if (result) {
-          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
-         setTimeout(function() {
-          window.location.href = "/checkstub";
-         }, 4000);
+		$('#user_login_button').hide()
+		$('#result').append(result)
+//          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+//         setTimeout(function() {
+//          window.location.href = "/checkstub";
+//         }, 4000);
           
       } else {
         $('#result').html('Failed to make a server-side call. Check your configuration and console.');
@@ -61,7 +63,7 @@
 
 
 <div id="pricing">
-<span> <button>
+<span> <button id='user_login_button'>
          
 
           <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
