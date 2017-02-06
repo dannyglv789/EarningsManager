@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="/static/checkstub.js"></script>
 	<link rel=stylesheet type=text/css href="/static/templatetwo.css">
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
 </head>
 <body style="background-color:grey;">
+<h1>Create Stub </h1>
 	<div id='check_two' style="background-image:url('/static/checktemplate2.png');width:594px;height:540px;">
 		<div id='earnings_statement'>
 			<input type='text' id='pay_period' size='4'> <br>
@@ -17,17 +21,17 @@
 		</div>
 		
 		<div id='status_exemptions_and_names'>
-			<input type='text' value='Single'> <input type='text' id='name' value='John Doe'> <br>
-			<input type='text' value='2'> <input type='text' class='borderless' id='street_address' value='123 Street Ave'> <br>
+			<input name='status' class='borderless' type='text' value='status'> <input type='text' id='name' value='John Doe'> <br>
+			<input name='exemptions' type='text' class='borderless' value='2'> <input type='text' class='borderless' id='street_address' value='123 Street Ave'> <br>
 			<input type='text' id='city_state_zip' class='borderless' value='San Francisco CA 94103'>
 			
 		</div>
 		
 		<div id='earnings'>
 			<div id='regular'> 
-				<input type='text' class='borderless' id='reg_pay_rate' size='6' value='0.00'> 
+				<input type='text' class='borderless' id='rate' size='6' value='0.00'> 
 				<input type='text' class='borderless' id='hours' size='5' value='0.00'>
-				<input type='text' class='borderless' id='reg_period' size='5' value='0.00'>
+				<input type='text' class='borderless' id='current_pay' size='5' value='0.00'>
 				<input type='text' class='borderless' id='ytd' size='5' value='0.00'>
 			</div>
 			
@@ -46,33 +50,33 @@
 			</div>
 			
 			<div id='Gross'>
-				<input type='text' size='6' class='borderless' id='gross_pay' value='0.00'>
-				<input type='text' size='5' class='borderless' id='ot_hours' value='0.00'>
+				<input type='text' size='5' class='borderless' id='gross_pay' value='0.00'>
+				<input type='text' size='5' class='borderless' id='gross_ytd' value='0.00'>
 			</div>
 		</div>
 		
 		<div id='deductions'>
 			<div id='fed_tax'>
-				<input type='text' id='fed_tax_period' size='5'>
-				<input type='text' id='fed_tax_ytd' size='5'>
+				<input type='text' class='borderless' id='fed_tax_period' size='5' value='0.00'>
+				<input type='text' class='borderless' id='fed_tax_ytd' size='5' value='0.00'>
 			</div>
 			<div id='soc_tax'>
-				<input type='text' id='soc_tax_period' size='5'>
-				<input type='text' id='soc_tax_ytd' size='5'>
+				<input type='text' class='borderless' id='soc_tax_period' size='5'value='0.00'>
+				<input type='text' class='borderless' id='soc_tax_ytd' size='5' value='0.00'>
 			</div>
 			
 			<div id='state_tax'>
-				<input type='text' id='soc_tax_period' size='5'>
-				<input type='text' id='soc_tax_ytd' size='5'>
+				<input type='text' class='borderless' id='soc_tax_period' size='5' value='0.00'>
+				<input type='text' class='borderless' id='soc_tax_ytd' size='5' value='0.00'>
 			</div>
 			
 			<div id='custom_tax'>
-				<input type='text' id='soc_tax_period' size='5'>
-				<input type='text' id='soc_tax_ytd' size='5'>
+				<input type='text' class='borderless' id='soc_tax_period' size='5' value='0.00'>
+				<input type='text' class='borderless' id='soc_tax_ytd' size='5' value='0.00'>
 			</div>
 			
 			<div id='net_pay_comments'>
-				<input type='text' size='6' id='net_pay_total'>
+				<input type='text' size='6' class='borderless' id='net_pay_total' value='000.00'>
 				<div id='comments'>
 					<textarea> </textarea>
 				</div>

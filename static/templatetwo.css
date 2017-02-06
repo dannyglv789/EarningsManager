@@ -2,6 +2,18 @@
 	border:none;
 }
 
+h1{
+	font-family: 'Archivo Narrow', sans-serif;
+	text-align:center;
+	font-size:3em;
+	
+}
+
+#check_two{
+	margin-left:auto;
+	margin-right:auto;
+}
+
 #earnings_statement{
 width:100%;
 padding-top: 22px;
@@ -48,11 +60,11 @@ margin-left: 65%;
 		margin-left:142px;
 }
 
-#reg_period{
+#current_pay{
 	margin-left:8px;
 }
  
-#reg_pay_rate{
+#rate{
 	margin-left:142px;
 	margin-top: 2px;
 }
@@ -91,6 +103,10 @@ margin-left:5px;
 #gross_pay{
 	margin-left:287px;
 }
+
+#gross_ytd{
+	margin-left:4px;
+}
 #deductions{
 	margin-top:30px;
 }
@@ -112,7 +128,7 @@ margin-left:5px;
 }
 
 #net_pay_comments{
-	margin-top:7px;
+	margin-top:11px;
 }
 
 #net_pay_total{

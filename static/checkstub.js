@@ -6,6 +6,7 @@ var federal_tax =  0.11125;
 
 $(document).ready(function(){
 
+/*
 	// FICA SOCIAL SECURITY
    $( "#current_pay" ).keyup(function() {
   var fica_total = this.value * ca_fica_emp;
@@ -36,12 +37,16 @@ $(document).ready(function(){
   $("#net_pay").val(net.toFixed(2));
 });
    
+*/
+
   // CURRENT PAY FROM RATE * HOURS
   $("#hours").keyup(function(){
   var current_pay_total = this.value * $("#rate").val();
   $("#current_pay").val(current_pay_total); 
 	  
   });
+  
+/*
   // YTD GROSS
   $("#ytd_num").click(function(){
   var ytd_gross_total = this.value * $("#total").val();
@@ -52,6 +57,7 @@ $(document).ready(function(){
   $("#ytd_net").val(ytd_net_total.toFixed(2));
 
   })
+*/
   
   
   
