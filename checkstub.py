@@ -108,6 +108,10 @@ def check_stub():
         has been used, users are redirected to square payment ui.
         After verification, membership is set to True.
     """
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in xrange(32))
+    login_session['state'] = state
+    
     if request.method == 'POST':
         if 'email' not in login_session:
             return redirect(url_for('test_login'))
@@ -183,7 +187,7 @@ def check_stub():
             session.add(user)
             session.commit()
             return render_template('checkstub.html')
-    return render_template('checkstub.html')
+    return render_template('checkstub.html',state=state)
 
 @app.route('/templateone')
 def main_template():
