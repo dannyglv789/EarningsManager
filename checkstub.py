@@ -194,14 +194,20 @@ def main_template():
     """ Page for creating stubs with template one for
         members
     """
-    return render_template('templateone.html')
+    if 'facebook_id' in login_session and 'state' in login_session:
+        return render_template('templateone.html')
+    else:
+        abort(403)
 
 @app.route('/templatetwo')
 def template_two():
     """ page for creating stubs with
         template two Members only
     """
-    return render_template('templatetwo.html')
+    if 'facebook_id' in login_session and 'state' in login_session:
+        return render_template('templatetwo.html')
+    else:
+        abort(403)
 
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
@@ -212,12 +218,11 @@ def viewCheck(check_id):
 
     # user is logged in and either granted or denied permission
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-
     try:
         # check if stub exists
         check = session.query(Check).filter_by(id=check_id).one()
     except:
-        return '404 not found', 404
+        return abort(404)
     
     if user.id != check.creator:
         return abort(403)
