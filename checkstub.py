@@ -235,6 +235,15 @@ def my_stubs():
     stubs = session.query(Check).filter_by(creator=user.id)
     return render_template('mychecks.html', stubs=stubs)
 
+@app.route('/myhome')
+def my_home():
+    """ membership home page with opitions to create stub from template or
+        view created stubs
+    """
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+    stubs = session.query(Check).filter_by(creator=user.id)
+    return render_template('myhome.html', stubs=stubs)
+
 @app.route('/thankyou/')
 def thank_you():
 
