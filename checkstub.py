@@ -206,9 +206,9 @@ def template_two():
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
-    # non logged in user is redirected to login
-    if 'facebook_id' not in login_session:
-        return 'you must login'
+    # non logged in user is is denied permission
+    if 'facebook_id' not in login_session or 'state' not in login_session:
+        return abort(403)
 
     # user is logged in and either granted or denied permission
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
@@ -224,25 +224,18 @@ def viewCheck(check_id):
     else:
         return render_template('checkstub_done.html',check=check)
 
-@app.route('/mystubs/')
-def my_stubs():
-    """ stubs are queried by user id. Only creator has access"""
-    # non logged in user is redirected to login
-    if 'facebook_id' not in login_session:
-        return 'fb login page'
-    
-    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-    stubs = session.query(Check).filter_by(creator=user.id)
-    return render_template('mychecks.html', stubs=stubs)
-
 @app.route('/myhome')
 def my_home():
     """ membership home page with opitions to create stub from template or
         view created stubs
     """
-    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-    stubs = session.query(Check).filter_by(creator=user.id)
-    return render_template('myhome.html', stubs=stubs)
+    # logged in user with csrf token is directed home all others get 403 
+    if 'facebook_id' in login_session and 'state' in login_session:
+        user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+        stubs = session.query(Check).filter_by(creator=user.id)
+        return render_template('myhome.html', stubs=stubs)
+    else:
+        abort(403)
 
 @app.route('/thankyou/')
 def thank_you():
