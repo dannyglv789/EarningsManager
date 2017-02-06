@@ -296,11 +296,13 @@ def switch_membership_status():
         user.is_member = True
         session.add(user)
         session.commit()
+        print user.is_member
         return 'membership status switched'
     else:
         user.is_member = False
         session.add(user)
         session.commit()
+        print user.is_member
         return 'membership status switched'
     
 if __name__ == '__main__':

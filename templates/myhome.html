@@ -14,7 +14,7 @@
 <h3 style="font-family:'Archivo Narrow', sans-serif;">My Statements</h3>
 	<div>
 		{%for i in stubs%}
-			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a>
+			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a> <br>
 		{%endfor%}
 	</div>
 </body>
