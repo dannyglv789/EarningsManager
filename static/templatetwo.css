@@ -1,0 +1,69 @@
+.name_address_info{
+	border:none;
+}
+
+#earnings_statement{
+width:100%;
+padding-top: 22px;
+margin-left: 65%;
+}
+
+#pay_period{
+	margin-left:80px;
+	margin-top:16px;
+}
+
+#pay_date{
+	margin-left:80px;
+}
+
+#company_name{
+	margin-left:70px;
+}
+
+#status_exemptions_and_names{
+	margin-left: 160px;
+}
+
+#name_info{
+	display: inline-block;
+}
+
+#name{
+	margin-left:70px;
+}
+
+#street_address{
+	margin-left:70px;
+}
+
+#city_state_zip{
+	margin-left:234px;
+}
+
+#earnings{
+	margin-top:50px;
+}
+.pay_rate{
+		margin-left:142px;
+}
+ 
+#reg_pay_rate{
+	margin-top: 2px;
+}
+
+#hours{
+	
+}
+
+#ot_pay_rate{
+
+}
+
+#ot_ytd{
+	margin-left: 5px;
+}
+
+#vac_ytd{
+	margin-left: 5px;
+}

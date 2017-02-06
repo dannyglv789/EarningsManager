@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel=stylesheet type=text/css href="/static/templatetwo.css">
 </head>
 <body style="background-color:grey;">
-<div id='check_two' style="background-image:url('/static/checktemplate2withguides.png');width:594px;
-	height:540px;">
-</div>
+	<div id='check_two' style="background-image:url('/static/checktemplate2withguides.png');width:594px;height:540px;">
+		<div id='earnings_statement'>
+			<input type='text' id='pay_period' size='4'> <br>
+			<input type='text' id='pay_date' size='4'>
+		</div>
+		
+		<div id='company_name'>
+			<input type='text' value='Company Name'> <br>
+			<input type='text' value='123 Company Ave'> <br>
+			<input type='text' value='San Francisco, CA 94103'>
+		</div>
+		
+		<div id='status_exemptions_and_names'>
+			<input type='text' value='Single'> <input type='text' class='name_address_info' id='name' value='John Doe'> <br>
+			<input type='text' value='2'> <input type='text' id='street_address' value='123 Street Ave'> <br>
+			<input type='text' id='city_state_zip' value='San Francisco CA 94103'>
+			
+		</div>
+		
+		<div id='earnings'>
+		<div id='regular'> 
+			<input type='text' class='pay_rate' id='reg_pay_rate' size='6'> 
+			<input type='text' id='hours' size='5'>
+			<input type='text' id='period' size='6'>
+			<input type='text' id='ytd' size='5'>
+		</div>
+		
+		<div id='overtime'>
+			<input type='text' size='6' class='pay_rate'id='ot_pay_rate'>
+			<input type='text' size='5' id='ot_hours'>
+			<input type='text' size='5' id='ot_period'>
+			<input type='text' size='5' id='ot_ytd'>
+		</div>
+		
+		<div id='vacation'>
+			<input type='text' size='6' class='pay_rate' id='vac_pay_rate'>
+			<input type='text' size='5' id='vac_hours'>
+			<input type='text' size='5' id='vac_period'>
+			<input type='text' size='5' id='vac_ytd'>
+		</div>
+		
+		<div id='Gross'>
+			<input type='text' size='6' class='pay_rate' id='ot_pay_rate'>
+			<input type='text' size='5' id='ot_hours'>
+			<input type='text' size='5' id='ot_period'>
+			<input type='text' size='5' id='ot_ytd'>
+		</div>
+		</div>
+
+	</div>
 </body>
 </html>
