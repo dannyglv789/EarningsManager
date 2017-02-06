@@ -4,7 +4,7 @@
 	<link rel=stylesheet type=text/css href="/static/templatetwo.css">
 </head>
 <body style="background-color:grey;">
-	<div id='check_two' style="background-image:url('/static/checktemplate2withguides.png');width:594px;height:540px;">
+	<div id='check_two' style="background-image:url('/static/checktemplate2.png');width:594px;height:540px;">
 		<div id='earnings_statement'>
 			<input type='text' id='pay_period' size='4'> <br>
 			<input type='text' id='pay_date' size='4'>
@@ -12,45 +12,72 @@
 		
 		<div id='company_name'>
 			<input type='text' value='Company Name'> <br>
-			<input type='text' value='123 Company Ave'> <br>
-			<input type='text' value='San Francisco, CA 94103'>
+			<input type='text' class='borderless' value='123 Company Ave'> <br>
+			<input type='text' class='borderless' value='San Francisco, CA 94103'>
 		</div>
 		
 		<div id='status_exemptions_and_names'>
-			<input type='text' value='Single'> <input type='text' class='name_address_info' id='name' value='John Doe'> <br>
-			<input type='text' value='2'> <input type='text' id='street_address' value='123 Street Ave'> <br>
-			<input type='text' id='city_state_zip' value='San Francisco CA 94103'>
+			<input type='text' value='Single'> <input type='text' id='name' value='John Doe'> <br>
+			<input type='text' value='2'> <input type='text' class='borderless' id='street_address' value='123 Street Ave'> <br>
+			<input type='text' id='city_state_zip' class='borderless' value='San Francisco CA 94103'>
 			
 		</div>
 		
 		<div id='earnings'>
-		<div id='regular'> 
-			<input type='text' class='pay_rate' id='reg_pay_rate' size='6'> 
-			<input type='text' id='hours' size='5'>
-			<input type='text' id='period' size='6'>
-			<input type='text' id='ytd' size='5'>
+			<div id='regular'> 
+				<input type='text' class='borderless' id='reg_pay_rate' size='6' value='0.00'> 
+				<input type='text' class='borderless' id='hours' size='5' value='0.00'>
+				<input type='text' class='borderless' id='reg_period' size='5' value='0.00'>
+				<input type='text' class='borderless' id='ytd' size='5' value='0.00'>
+			</div>
+			
+			<div id='overtime'>
+				<input type='text' size='6' class='borderless' id='ot_pay_rate' value='0.00'>
+				<input type='text' size='5' class='borderless' id='ot_hours' value='0.00'>
+				<input type='text' size='5' class='borderless' id='ot_period' value='0.00'>
+				<input type='text' size='5' class='borderless' id='ot_ytd' value='0.00'>
+			</div>
+			
+			<div id='vacation'>
+				<input type='text' size='6' class='borderless' id='vac_pay_rate' value='0.00'>
+				<input type='text' size='5' class='borderless' id='vac_hours' value='0.00'>
+				<input type='text' size='5' class='borderless' id='vac_period' value='0.00'>
+				<input type='text' size='5' class='borderless' id='vac_ytd' value='0.00'>
+			</div>
+			
+			<div id='Gross'>
+				<input type='text' size='6' class='borderless' id='gross_pay' value='0.00'>
+				<input type='text' size='5' class='borderless' id='ot_hours' value='0.00'>
+			</div>
 		</div>
 		
-		<div id='overtime'>
-			<input type='text' size='6' class='pay_rate'id='ot_pay_rate'>
-			<input type='text' size='5' id='ot_hours'>
-			<input type='text' size='5' id='ot_period'>
-			<input type='text' size='5' id='ot_ytd'>
-		</div>
-		
-		<div id='vacation'>
-			<input type='text' size='6' class='pay_rate' id='vac_pay_rate'>
-			<input type='text' size='5' id='vac_hours'>
-			<input type='text' size='5' id='vac_period'>
-			<input type='text' size='5' id='vac_ytd'>
-		</div>
-		
-		<div id='Gross'>
-			<input type='text' size='6' class='pay_rate' id='ot_pay_rate'>
-			<input type='text' size='5' id='ot_hours'>
-			<input type='text' size='5' id='ot_period'>
-			<input type='text' size='5' id='ot_ytd'>
-		</div>
+		<div id='deductions'>
+			<div id='fed_tax'>
+				<input type='text' id='fed_tax_period' size='5'>
+				<input type='text' id='fed_tax_ytd' size='5'>
+			</div>
+			<div id='soc_tax'>
+				<input type='text' id='soc_tax_period' size='5'>
+				<input type='text' id='soc_tax_ytd' size='5'>
+			</div>
+			
+			<div id='state_tax'>
+				<input type='text' id='soc_tax_period' size='5'>
+				<input type='text' id='soc_tax_ytd' size='5'>
+			</div>
+			
+			<div id='custom_tax'>
+				<input type='text' id='soc_tax_period' size='5'>
+				<input type='text' id='soc_tax_ytd' size='5'>
+			</div>
+			
+			<div id='net_pay_comments'>
+				<input type='text' size='6' id='net_pay_total'>
+				<div id='comments'>
+					<textarea> </textarea>
+				</div>
+			</div>
+			
 		</div>
 
 	</div>

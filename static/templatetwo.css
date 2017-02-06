@@ -1,4 +1,4 @@
-.name_address_info{
+.borderless{
 	border:none;
 }
 
@@ -42,14 +42,23 @@ margin-left: 65%;
 }
 
 #earnings{
-	margin-top:50px;
+	margin-top:60px;
 }
 .pay_rate{
 		margin-left:142px;
 }
+
+#reg_period{
+	margin-left:8px;
+}
  
 #reg_pay_rate{
+	margin-left:142px;
 	margin-top: 2px;
+}
+
+#ytd{
+margin-left:5px;	
 }
 
 #hours{
@@ -57,13 +66,59 @@ margin-left: 65%;
 }
 
 #ot_pay_rate{
-
+	margin-left:142px;
 }
 
+#ot_period{
+	margin-left:8px;
+}
 #ot_ytd{
 	margin-left: 5px;
 }
 
 #vac_ytd{
 	margin-left: 5px;
+}
+
+#vac_pay_rate{
+	margin-left:142px;
+}
+
+#vac_period{
+	margin-left:8px;
+}
+
+#gross_pay{
+	margin-left:287px;
+}
+#deductions{
+	margin-top:30px;
+}
+
+#fed_tax_period{
+	margin-left: 287px;
+}
+
+#fed_tax_ytd{
+	margin-left:4px;
+}
+
+#soc_tax_period{
+	margin-left:287px;
+}
+
+#soc_tax_ytd{
+	margin-left:4px;
+}
+
+#net_pay_comments{
+	margin-top:7px;
+}
+
+#net_pay_total{
+	margin-left:214px;
+}
+
+#comments{
+	margin-left:360px;
 }
