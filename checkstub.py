@@ -210,6 +210,10 @@ def template_two():
     else:
         abort(403)
 
+@app.route('/fullpagetemp')
+def full_page_template():
+    return render_template('fullpage.html')
+
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
