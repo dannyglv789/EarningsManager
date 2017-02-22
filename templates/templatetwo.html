@@ -9,9 +9,10 @@
 <body style="background-color:grey;">
 <h1>Create Stub </h1>
 	<div id='check_two' style="background-image:url('/static/checktemplate2-timesnewroman.jpg');width:594px;height:540px;">
+	<form action="{{url_for('check_stub')}}" method="post">
 		<div id='earnings_statement'>
-			<input type='text' id='pay_period' size='4'> <br>
-			<input type='text' id='pay_date' size='4'>
+			<input name="rep_period" type='text' id='pay_period' size='4'> <br>
+			<input name="pay_date" type='text' id='pay_date' size='4'>
 		</div>
 		
 		<div id='company_name'>
@@ -21,7 +22,7 @@
 		</div>
 		
 		<div id='status_exemptions_and_names'>
-			<input name='status' class='borderless' type='text' value='status'> <input type='text' id='name' value='John Doe'> <br>
+			<input name='status' class='borderless' type='text' value='status'> <input name="emp_name" type='text' id='name' value='John Doe'> <br>
 			<input name='exemptions' type='text' class='borderless' value='2'> <input type='text' class='borderless' id='street_address' value='123 Street Ave'> <br>
 			<input type='text' id='city_state_zip' class='borderless' value='San Francisco CA 94103'>
 			
@@ -83,7 +84,8 @@
 			</div>
 			
 		</div>
-
+		<input type="submit" id="checkout" value="create" style="float:right;">
+	</form>
 	</div>
 </body>
 </html>

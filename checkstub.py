@@ -119,7 +119,7 @@ def check_stub():
         
         user = session.query(User).filter_by(name=login_session['email']).one()
 
-        # if a user is not a member and has made thier first complimentary check
+        # if a user is not a member and has made thier first complimentary statement
         # they are redirected to the square checkout ui
         if user.is_member == False and user.check_count >= 1:
             # eventually put this in a helper function
@@ -166,6 +166,8 @@ def check_stub():
             print result['id']
             return redirect(checkout_page)
         else:
+            # user is a member and can create stubs or user is making
+            # complimentary statements
             newCheck = Check(emp_name=request.form['emp_name'],
                              social=request.form['social'],
                              rep_period=request.form['rep_period'],
