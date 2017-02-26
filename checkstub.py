@@ -218,6 +218,10 @@ def template_two():
 def full_page_template():
     return render_template('fullpage.html')
 
+@app.route('/templatethree')
+def full_page_template():
+    return render_template('templatethree.html')
+
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
