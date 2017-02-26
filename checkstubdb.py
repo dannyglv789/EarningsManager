@@ -56,7 +56,7 @@ class Check(Base):
 #    net_pay = Column(String(80))
 
 # End of file code
-engine = create_engine('sqlite:///checkstub.db')
+engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
 # goes into the db and adds the classes we create as tables, DB Session establishes
 #link betweeen code we execute in session and db
 Base.metadata.create_all(engine)

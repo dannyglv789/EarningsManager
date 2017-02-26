@@ -11,7 +11,7 @@ from checkstubdb import Check,User, Base
 from cred import location_id, access_token
 
 # engine and db connection
-engine = create_engine('sqlite:///checkstub.db')
+engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
