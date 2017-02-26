@@ -1,0 +1,60 @@
+#top{
+	width:100%;
+	padding-top:5%;
+}
+
+#pay_period_section{
+	display: inline-block;
+	float:right;
+	margin:5% 12% 0 0
+}
+
+#pay_date{
+	margin-top:13%;
+}
+
+#company_name{
+	display:inline-block;
+	margin-left:6%;
+	margin-top:1%;
+}
+
+#company_address_field{
+	margin-top:6%;
+}
+
+#company_city_field{
+	margin-top:6%;
+}
+
+#exemptions_info{
+	display:inline-block;
+	margin-top:2.8%;
+	margin-left:22%;
+}
+
+#employee_address_info{
+	display:inline-block;
+	margin:4.5% 7% 0 0;
+	float:right;
+}
+
+#exemptions{
+	margin-top:2.9%;
+}
+
+#street_address{
+	margin-top:4%;
+}
+
+#city_state_zip{
+	margin-top:3.6%;
+}
+#earnings{
+	margin-top:33%;
+	margin-left:24%;
+}
+
+#hours{
+	margin-left:6.5%;
+}
