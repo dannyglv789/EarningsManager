@@ -4,7 +4,7 @@
 <link rel=stylesheet type=text/css href="/static/templatethree.css">
 </head>
 <body style="background-color:grey;">
-	<div style="background-image:url('/static/fullpageguide.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+	<div style="background-image:url('/static/fullpage2.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 		<div id="top">
 			<div id='company_name'>
 				<input type='text' id="company_name_field" value='Company Name'> <br>
@@ -56,6 +56,27 @@
 				<input type='text' class='period' size='1' value='0.00'>
 				<input type='text' class='ytd' size='1' value='0.00'>
 			</div>
+		</div>
+		
+		<div id="deductions">
+		<div id="fed_income">
+			<input name="fed_period" size='1' class="ded_period">
+			<input name="fed_ytd" size='1' id='fed_ytd'>
+		</div>
+		
+		<div id="soc_sec">
+			<input name="fed_period" size='1'>
+			<input name="fed_ytd" size='1' id='fed_ytd'>
+		</div>
+		
+		</div>
+		<div id="state_selection">
+			<select>
+				<option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+			</select>
 		</div>
 	</div>
 </body>
