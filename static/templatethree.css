@@ -51,10 +51,31 @@
 	margin-top:3.6%;
 }
 #earnings{
-	margin-top:33%;
+	margin-top:32.5%;
 	margin-left:24%;
 }
 
-#hours{
+.hours{
 	margin-left:6.5%;
+}
+
+.period{
+	margin-left:6.6%;
+}
+
+.ytd{
+	margin-left:7%;
+}
+
+/* earnings sections */
+#overtime{
+	margin-top:2.3%;
+}
+
+#vacation{
+	margin-top:1.8%;
+}
+
+#gross{
+	margin-top:.9%;
 }
