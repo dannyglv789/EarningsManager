@@ -92,13 +92,18 @@
 }
 
 #state_selection{
-	margin:1.7% 0 0 5.2%;
+	margin:1.4% 0 0 5.2%;
 }
 
 #net_pay{
-	margin:7.4% 0 0 40%;
+	margin:7.0% 0 0 40%;
 }
 
 #comments{
 	margin:2% 0 0 62%;
+}
+
+#state_select_box{
+	border: 1px solid #fff; background-color: transparent; 
+	font-family: 'Times New Roman', Times, serif; font-size:17px;
 }
