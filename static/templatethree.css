@@ -107,3 +107,11 @@
 	border: 1px solid #fff; background-color: transparent; 
 	font-family: 'Times New Roman', Times, serif; font-size:17px;
 }
+
+#state_period{
+	margin-left:30.7%;
+}
+
+#state_ytd{
+	margin-left:5.4%;
+}

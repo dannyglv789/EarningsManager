@@ -7,9 +7,9 @@
 	<div style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 		<div id="top">
 			<div id='company_name'>
-				<input type='text' id="company_name_field" value='Company Name'> <br>
-				<input type='text' id="company_address_field" value='123 Company Ave'> <br>
-				<input type='text' id="company_city_field" value='San Francisco, CA 94103'>
+				<input name='company_name' type='text' id="company_name_field" value='Company Name'> <br>
+				<input name='company_address' type='text' id="company_address_field" value='123 Company Ave'> <br>
+				<input name='company_city' type='text' id="company_city_field" value='San Francisco, CA 94103'>
 			</div>
 			<div id='pay_period_section'>
 				<input name="rep_period" type='text' id='pay_period' size='4'> <br>
@@ -24,30 +24,30 @@
 			
 			<div id="employee_address_info">
 				<input name="emp_name" type='text' id='name' value='John Doe'> <br> 
-				<input type='text' id='street_address' value='123 Street Ave'> <br>
-				<input type='text' id='city_state_zip' value='San Francisco CA 94103'>
+				<input name='emp_address' type='text' id='street_address' value='123 Street Ave'> <br>
+				<input name='emp_city_state_zip' type='text' id='city_state_zip' value='San Francisco CA 94103'>
 			</div>
 		</div>
 		<div id="earnings">
 			<div id='regular'> 
-				<input name="rate" type='text' id='rate' size='1' value='0.00'> 
-				<input name="hours" type='text' class='hours' size='1' value='0.00'>
-				<input type='text' class='period' size='1' value='0.00'>
-				<input type='text' class='ytd' size='1' value='0.00'>
+				<input name="reg_rate" type='text' id='rate' size='1' value='0.00'> 
+				<input name="reg_hours" type='text' class='hours' size='1' value='0.00'>
+				<input name='reg_period' type='text' class='period' size='1' value='0.00'>
+				<input name='reg_ytd' type='text' class='ytd' size='1' value='0.00'>
 			</div>
 			
 			<div id='overtime'> 
-				<input name="rate" type='text' id='rate' size='1' value='0.00'> 
-				<input name="hours" type='text' class='hours' size='1' value='0.00'>
-				<input type='text' class='period' size='1' value='0.00'>
-				<input type='text' class='ytd' size='1' value='0.00'>
+				<input name="ov_rate" type='text' id='rate' size='1' value='0.00'> 
+				<input name="ov_hours" type='text' class='hours' size='1' value='0.00'>
+				<input name='ov_period' type='text' class='period' size='1' value='0.00'>
+				<input name='ov_ytd' type='text' class='ytd' size='1' value='0.00'>
 			</div>
 			
 			<div id='vacation'> 
-				<input name="rate" type='text' id='rate' size='1' value='0.00'> 
-				<input name="hours" type='text' class='hours' size='1' value='0.00'>
-				<input type='text' class='period' size='1' value='0.00'>
-				<input type='text' class='ytd' size='1' value='0.00'>
+				<input name="vac_rate" type='text' id='rate' size='1' value='0.00'> 
+				<input name="vac_hours" type='text' class='hours' size='1' value='0.00'>
+				<input name='vac_period' type='text' class='period' size='1' value='0.00'>
+				<input name='vac_ytd' type='text' class='ytd' size='1' value='0.00'>
 			</div>
 			
 			<div id='gross'> 
@@ -119,6 +119,9 @@
 				
 				
 			</select>
+			
+			<input name='state_period' id='state_period' type='text' size='1'>
+			<input name='state_ytd' id='state_ytd' type='text' size='1'>
 
 		</div>
 		
