@@ -56,6 +56,7 @@ class Check(Base):
 #    net_pay = Column(String(80))
 
 class Check_2(Base):
+    __tablename__ = 'check2'
     creator = Column(Integer, ForeignKey('user.id'))
     id = Column(Integer, primary_key = True)
     company_name = Column(String(80))
@@ -67,7 +68,7 @@ class Check_2(Base):
     exemptions = Column(String(10))
     emp_name = Column(String(80))
     emp_address = Column(String(80))
-    emp_city_state = Column(String(80))
+    emp_city_state_zip = Column(String(80))
     reg_rate = Column(String(20))
     reg_hours = Column(String(20))
     reg_period = Column(String(20))
@@ -84,6 +85,8 @@ class Check_2(Base):
     gross_ytd = Column(String(20))
     fed_period = Column(String(20))
     fed_ytd = Column(String(20))
+    soc_period = Column(String(20))
+    soc_ytd = Column(String(20))
     state_selection = Column(String(2))
     state_period = Column(String(20))
     state_ytd = Column(String(20))

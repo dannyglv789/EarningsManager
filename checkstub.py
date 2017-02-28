@@ -217,6 +217,43 @@ def full_page_template():
     else:
         abort(403)
     """
+    if request.method == 'POST':
+        new_statement = Check2(creator=user.id,
+                               company_name=request.form['company_name'],
+                               company_address=request.form['company_address'],
+                               company_city=request.form['company_city'],
+                               pay_period=request.form['pay_period'],
+                               pay_date=request.form['pay_date'],
+                               status=request.form['status'],
+                               exemptions=requst.form['exemptions'],
+                               emp_name=request.form['emp_name'],
+                               emp_address=request.form['emp_address'],
+                               emp_city_state_zip=request.form['emp_city_state_zip'],
+                               reg_rate=request.form['reg_rate'],
+                               reg_hours=request.form['reg_hours'],
+                               reg_period=request.form['reg_period'],
+                               reg_ytd=request.form['reg_ytd'],
+                               ov_rate=request.form['ov_rate'],
+                               ov_period=request.form['ov_period'],
+                               ov_ytd=request.form['ov_ytd'],
+                               vac_rate=request.form['vac_rate'],
+                               vac_hours=request.form['vac_hours'],
+                               vac_period=request.form['vac_period'],
+                               vac_ytd=request.form['vac_ytd'],
+                               gross_period=request.form['gross_period'],
+                               gross_ytd=request.form['gross_ytd'],
+                               fed_period=request.form['fed_period'],
+                               fed_ytd=request.form['fed_ytd'],
+                               soc_period=request.form['soc_period'],
+                               soc_ytd=request.form['soc_ytd'],
+                               state_selection=request.form['state_selection'],
+                               state_period=request.form['state_period'],
+                               state_ytd=request.form['state_ytd'],
+                               net_pay=request.form['net_pay'],
+                               comments=request.form['comments']
+                               )
+        session.add(Check2)
+        session.commit()
     return render_template('templatethree.html')
 
 @app.route('/yourstub/<int:check_id>/')
