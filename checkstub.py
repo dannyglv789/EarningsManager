@@ -204,22 +204,19 @@ def main_template():
     else:
         abort(403)
 
-@app.route('/templatetwo')
-def template_two():
-    """ page for creating stubs with
-        template two Members only
-    """
-    if 'facebook_id' in login_session and 'state' in login_session:
-        return render_template('templatetwo.html')
-    else:
-        abort(403)
-
-@app.route('/fullpagetemp')
-def full_page_template():
+@app.route('/fullpageprint')
+def full_page_print():
+    """ full page print """
     return render_template('fullpage.html')
 
 @app.route('/templatethree')
 def full_page_template():
+    """
+    if 'facebook_id' in login_session and 'state' in login_session:
+        return render_template('templatethree.html')
+    else:
+        abort(403)
+    """
     return render_template('templatethree.html')
 
 @app.route('/yourstub/<int:check_id>/')
