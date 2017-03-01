@@ -7,7 +7,7 @@ from flask import flash
 app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
-from checkstubdb import Check,User, Base
+from checkstubdb import Check,Check_2, User, Base
 from cred import location_id, access_token
 
 # engine and db connection
@@ -209,7 +209,7 @@ def full_page_print():
     """ full page print """
     return render_template('fullpage.html')
 
-@app.route('/templatethree')
+@app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():
     """
     if 'facebook_id' in login_session and 'state' in login_session:
@@ -218,14 +218,14 @@ def full_page_template():
         abort(403)
     """
     if request.method == 'POST':
-        new_statement = Check2(creator=user.id,
+        new_statement = Check_2(creator=1,
                                company_name=request.form['company_name'],
                                company_address=request.form['company_address'],
                                company_city=request.form['company_city'],
                                pay_period=request.form['pay_period'],
                                pay_date=request.form['pay_date'],
                                status=request.form['status'],
-                               exemptions=requst.form['exemptions'],
+                               exemptions=request.form['exemptions'],
                                emp_name=request.form['emp_name'],
                                emp_address=request.form['emp_address'],
                                emp_city_state_zip=request.form['emp_city_state_zip'],
@@ -252,8 +252,9 @@ def full_page_template():
                                net_pay=request.form['net_pay'],
                                comments=request.form['comments']
                                )
-        session.add(Check2)
+        session.add(new_statement)
         session.commit()
+        return (redirect(url_for('full_page_template')))
     return render_template('templatethree.html')
 
 @app.route('/yourstub/<int:check_id>/')

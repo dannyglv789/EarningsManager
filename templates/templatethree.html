@@ -5,6 +5,7 @@
 </head>
 <body style="background-color:grey;">
 	<div style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+	<form action="{{url_for('full_page_template')}}" method="post">
 		<div id="top">
 			<div id='company_name'>
 				<input name='company_name' type='text' id="company_name_field" value='Company Name'> <br>
@@ -134,5 +135,7 @@
 			</textarea>
 		</div>
 	</div>
+		<input type='submit' style='float:right;'>
+	</form>
 </body>
 </html>
