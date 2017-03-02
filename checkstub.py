@@ -204,10 +204,11 @@ def main_template():
     else:
         abort(403)
 
-@app.route('/fullpageprint')
-def full_page_print():
-    """ full page print """
-    return render_template('fullpage.html')
+@app.route('/fullpageprint/<int:check_id>')
+def full_page_print(check_id):
+    """ full page print out """
+    check = session.query(Check_2).filter_by(id=check_id).one()
+    return render_template('fullpage.html', check=check)
 
 @app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():

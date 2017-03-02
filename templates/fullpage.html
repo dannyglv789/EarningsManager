@@ -6,25 +6,25 @@
 <body style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 		<div id="top">
 			<div id='company_name'>
-				<span id="company_name_field"> Company Name </span><br>
-				<span id="company_address_field"> 123 Company Ave </span> <br>
-				<span id="company_city_field"> San Francisco, CA 94103 </span>
+				<span id="company_name_field"> {{check.company_name}}</span><br>
+				<span id="company_address_field"> {{check.company_address}} </span> <br>
+				<span id="company_city_field"> {{check.company_city}} </span>
 			</div>
 			<div id='pay_period_section'>
-				<span id='pay_period'> 01/01/17</span><br>
-				<div id='pay_date'> 01/02/17</div>
+				<span id='pay_period'>{{check.pay_period}}</span><br>
+				<div id='pay_date'> {{check.pay_date}}</div>
 			</div>
 		</div>
 		<div id="employee_info_middle">
 			<div id="exemptions_info">
-				<div> status </div> <br> 
-				<div id='exemptions'> Exemptions </div>
+				<div> {{check.status}}</div> <br> 
+				<div id='exemptions'> {{check.exemptions}} </div>
 			</div>
 			
 			<div id="employee_address_info">
-				<div id='name'> John Jobs </div> <br> 
-				<div id='street_address'> 123 Street Ave </div><br>
-				<div id='city_state_zip'> San Francisco CA 94103 </div>
+				<div id='name'>{{check.emp_name}}</div> <br> 
+				<div id='street_address'>{{check.emp_address}}</div><br>
+				<div id='city_state_zip'>{{check.emp_city_state_zip}}</div>
 			</div>
 		</div>
 		<div id="earnings">
