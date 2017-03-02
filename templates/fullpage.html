@@ -1,11 +1,89 @@
 <DOCTYPE html>
 <html>
-<body style="background-image:url('/static/fullpageguide.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
-	<div id='earnings_statement'>
-		<span name="rep_period" id='pay_period'>01/01/2016 - 01/07/2016</span> <br>
-		<div>
-			<span name="pay_date" id='pay_date'> 09/01/17</span>
+<head>
+	<link rel=stylesheet type=text/css href="/static/fullpageprint.css">
+</head>
+<body style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+		<div id="top">
+			<div id='company_name'>
+				<span id="company_name_field"> Company Name </span><br>
+				<span id="company_address_field"> 123 Company Ave </span> <br>
+				<span id="company_city_field"> San Francisco, CA 94103 </span>
+			</div>
+			<div id='pay_period_section'>
+				<span id='pay_period'> 01/01/17</span><br>
+				<div id='pay_date'> 01/02/17</div>
+			</div>
 		</div>
-	</div>
+		<div id="employee_info_middle">
+			<div id="exemptions_info">
+				<div> status </div> <br> 
+				<div id='exemptions'> Exemptions </div>
+			</div>
+			
+			<div id="employee_address_info">
+				<div id='name'> John Jobs </div> <br> 
+				<div id='street_address'> 123 Street Ave </div><br>
+				<div id='city_state_zip'> San Francisco CA 94103 </div>
+			</div>
+		</div>
+		<div id="earnings">
+			<div id='regular'> 
+				<span id='rate'> 0.00 </span> 
+				<span class='hours'> 0.00 </span>
+				<span class='period'> 0.00 </span>
+				<span class='ytd'> 0.00</span>
+			</div>
+			
+			<div id='overtime'> 
+				<span id='rate' size='1' value='0.00'> 0.00 </span>
+				<span class='hours'> 0.00 </span>
+				<span class='period'> 0.00 </span>
+				<span class='ytd'> 0.00 </span>
+			</div>
+			
+			<div id='vacation'> 
+				<span id='rate'> 0.00 </span>
+				<span class='hours'> 0.00 </span>
+				<span class='period'> 0.00 </span>
+				<span class='ytd'> 0.00 </span>
+			</div>
+			
+			<div id='gross'> 
+				<span id='rate'> 0.00 </span>
+				<span class='hours'> 0.00 </span>
+				<span class='period'> 0.00 </span>
+				<span class='ytd'> 0.00 </span>
+			</div>
+		</div>
+		
+		<div id="deductions">
+		<div id="fed_income">
+			<span class="ded_period"> 0.00 </span>
+			<span id='fed_ytd'> 0.00 </span>
+		</div>
+		
+		<div id="soc_sec">
+			<span> 0.00 </span>
+			<span id='fed_ytd'> 0.00 </span>
+		</div>
+		
+		</div>
+		<div id="state_selection" style="">
+			
+			<span> CA Tax </span>
+			<span id='state_period'> 0.00 </span>
+			<span id='state_ytd'> 0.00 </span>
+
+		</div>
+		
+		<div id="net_pay">
+			<span> 0.00 </span>
+		</div>
+		
+		<div id="comments">
+			<textarea name="comments"> 
+			</textarea>
+		</div>
 </body>
 </html>
