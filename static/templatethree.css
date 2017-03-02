@@ -20,16 +20,16 @@
 }
 
 #company_address_field{
-	margin-top:6%;
+	/* margin-top:6%; */
 }
 
 #company_city_field{
-	margin-top:6%;
+	/* margin-top:6%; */
 }
 
 #exemptions_info{
 	display:inline-block;
-	margin-top:2.8%;
+	margin-top:5.5%;
 	margin-left:22%;
 }
 
@@ -44,11 +44,11 @@
 }
 
 #street_address{
-	margin-top:4%;
+	/* margin-top:4%; */
 }
 
 #city_state_zip{
-	margin-top:3.6%;
+	/* margin-top:3.6%; */
 }
 #earnings{
 	margin-top:32.5%;
@@ -96,7 +96,7 @@
 }
 
 #net_pay{
-	margin:7.0% 0 0 40%;
+	margin:5.6% 0 0 39%;
 }
 
 #comments{
