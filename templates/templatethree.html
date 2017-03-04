@@ -4,7 +4,7 @@
 <link rel=stylesheet type=text/css href="/static/templatethree.css">
 </head>
 <body style="background-color:grey;">
-	<div style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+	<div style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 	<form action="{{url_for('full_page_template')}}" method="post">
 		<div id="top">
 			<div id='company_name'>
@@ -13,7 +13,8 @@
 				<input name='company_city' type='text' id="company_city_field" value='San Francisco, CA 94103'>
 			</div>
 			<div id='pay_period_section'>
-				<input name="pay_period" type='text' id='pay_period' size='5' value="mm/dd/yyyy"> <br>
+				<input name="pay_begin" type='text' id='pay_period' size='5' value="mm/dd/yyyy"> <br>
+				<input name="pay_end" type='text' id='pay_end' size='5' value="mm/dd/yyyy"> <br>
 				<input name="pay_date" type='text' id='pay_date' size='5' value="mm/dd/yyyy">
 			</div>
 		</div>

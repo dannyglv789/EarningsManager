@@ -18,6 +18,7 @@ session = DBSession()
 
 app.secret_key = 'super duper key'
 
+# Login and user home
 @app.route('/testlogin/')
 def test_login():
     # create anti-forgery state token
@@ -100,6 +101,20 @@ def fbconnect():
     # flash("Now logged in as %s" % login_session['username'])
     return output
 
+@app.route('/myhome')
+def my_home():
+    """ membership home page with opitions to create stub from template or
+        view created stubs
+    """
+    # logged in user with csrf token is directed home all others get 403 
+    if 'facebook_id' in login_session and 'state' in login_session:
+        user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+        stubs = session.query(Check).filter_by(creator=user.id)
+        return render_template('myhome.html', stubs=stubs)
+    else:
+        abort(403)
+
+# Create and edit functions
 @app.route('/')
 @app.route('/checkstub/', methods=['GET','POST'])
 def check_stub():
@@ -204,12 +219,6 @@ def main_template():
     else:
         abort(403)
 
-@app.route('/fullpageprint/<int:check_id>')
-def full_page_print(check_id):
-    """ full page print out """
-    check = session.query(Check_2).filter_by(id=check_id).one()
-    return render_template('fullpage.html', check=check)
-
 @app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():
     """
@@ -258,6 +267,13 @@ def full_page_template():
         return (redirect(url_for('full_page_template')))
     return render_template('templatethree.html')
 
+# Print Views
+@app.route('/fullpageprint/<int:check_id>')
+def full_page_print(check_id):
+    """ full page print out """
+    check = session.query(Check_2).filter_by(id=check_id).one()
+    return render_template('fullpage.html', check=check)
+
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
@@ -277,19 +293,6 @@ def viewCheck(check_id):
         return abort(403)
     else:
         return render_template('checkstub_done.html',check=check)
-
-@app.route('/myhome')
-def my_home():
-    """ membership home page with opitions to create stub from template or
-        view created stubs
-    """
-    # logged in user with csrf token is directed home all others get 403 
-    if 'facebook_id' in login_session and 'state' in login_session:
-        user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-        stubs = session.query(Check).filter_by(creator=user.id)
-        return render_template('myhome.html', stubs=stubs)
-    else:
-        abort(403)
 
 @app.route('/thankyou/')
 def thank_you():

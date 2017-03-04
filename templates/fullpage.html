@@ -3,7 +3,7 @@
 <head>
 	<link rel=stylesheet type=text/css href="/static/fullpageprint.css">
 </head>
-<body style="background-image:url('/static/fullpage3.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+<body style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 		<div id="top">
 			<div id='company_name'>
 				<span id="company_name_field"> {{check.company_name}}</span><br>
@@ -11,7 +11,8 @@
 				<span id="company_city_field"> {{check.company_city}} </span>
 			</div>
 			<div id='pay_period_section'>
-				<span id='pay_period'>{{check.pay_period}}</span><br>
+				<span id='pay_period'>{{check.pay_begin}}</span><br>
+				<div id='pay_end'>{{check.pay_end}}</div>
 				<div id='pay_date'> {{check.pay_date}}</div>
 			</div>
 		</div>
