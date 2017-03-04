@@ -232,7 +232,8 @@ def full_page_template():
                                company_name=request.form['company_name'],
                                company_address=request.form['company_address'],
                                company_city=request.form['company_city'],
-                               pay_period=request.form['pay_period'],
+                               pay_begin=request.form['pay_begin'],
+                               pay_end=request.form['pay_end'],
                                pay_date=request.form['pay_date'],
                                status=request.form['status'],
                                exemptions=request.form['exemptions'],
@@ -264,10 +265,10 @@ def full_page_template():
                                )
         session.add(new_statement)
         session.commit()
-        return (redirect(url_for('full_page_template')))
+        return (redirect(url_for('check_stub')))
     return render_template('templatethree.html')
 
-# Print Views
+# Print views
 @app.route('/fullpageprint/<int:check_id>')
 def full_page_print(check_id):
     """ full page print out """

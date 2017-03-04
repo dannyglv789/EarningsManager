@@ -30,10 +30,10 @@
 		</div>
 		<div id="earnings">
 			<div id='regular'> 
-				<span id='rate'> 0.00 </span> 
-				<span class='hours'> 0.00 </span>
-				<span class='period'> 0.00 </span>
-				<span class='ytd'> 0.00</span>
+				<span id='rate'> {{check.reg_rate}} </span> 
+				<span class='hours'> {{check.reg_hours}}</span>
+				<span class='period'>{{check.reg_period}}</span>
+				<span class='ytd'>{{check.reg_ytd}}</span>
 			</div>
 			
 			<div id='overtime'> 
@@ -84,8 +84,7 @@
 		
 		<div id="comments">
 			<div name="comments"> 
-				Please Contact Dave at <br>
-				415 777-2456
+				{{check.comments}}
 			</div>
 		</div>
 </body>
