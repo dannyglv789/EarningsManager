@@ -1,0 +1,120 @@
+#top{
+	width:100%;
+	padding-top:3.5%;
+}
+
+#pay_period_section{
+	display: inline-block;
+	float:right;
+	margin:5.3% 7% 0 0
+}
+
+#pay_date{
+	margin-top:7%;
+}
+#pay_end{
+	margin-top:7%;
+}
+
+#company_name{
+	display:inline-block;
+	margin-left:6%;
+	margin-top:1%;
+}
+
+#company_address_field{
+	margin-top:6%;
+}
+
+#company_city_field{
+	margin-top:6%;
+}
+
+#exemptions_info{
+	display:inline-block;
+	margin-top:7.4%;
+	margin-left:22%;
+}
+
+#employee_address_info{
+	display:inline-block;
+	margin:1.5% 0 0 66%;
+	/* float:right; */
+}
+
+#exemptions{
+	margin-top:-26%;
+}
+
+#street_address{
+	margin-top:-10%;
+}
+
+#city_state_zip{
+	margin-top:-10%;
+}
+#earnings{
+	margin-top:22.1%;
+	margin-left:22.7%;
+}
+
+.hours{
+	margin-left:8.8%;
+}
+
+.period{
+	margin-left:8.9%;
+}
+
+.ytd{
+	margin-left:9%;
+}
+
+/* earnings sections */
+#overtime{
+	margin-top:2.3%;
+}
+
+#vacation{
+	margin-top:1.8%;
+}
+
+#gross{
+	margin-top:2.1%;
+}
+
+#deductions{
+	margin: 9.2% 0 0 47%;
+}
+#fed_ytd{
+	margin-left:10.2%;
+}
+
+#soc_sec{
+	margin-top:3.2%;
+}
+
+#state_selection{
+	margin:1.4% 0 0 4.4%;
+}
+
+#net_pay{
+	margin:8.7% 0 0 39.00%;
+}
+
+#comments{
+	margin:2% 0 0 62%;
+}
+
+#state_select_box{
+	border: 1px solid #fff; background-color: transparent; 
+	font-family: 'Times New Roman', Times, serif; font-size:17px;
+}
+
+#state_period{
+	margin-left:35.4%;
+}
+
+#state_ytd{
+	margin-left:5.5%;
+}
