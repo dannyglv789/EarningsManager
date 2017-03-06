@@ -123,7 +123,7 @@ def my_home():
 @app.route('/checkstub/', methods=['GET','POST'])
 def check_stub():
     """ view for creating and editing a stub
-        visitors are first redirected to fb login
+        visitors are redirected to fb login
         In POST membership and check count are checked. If complementary check
         has been used, users are redirected to square payment ui.
         After verification, membership is set to True.
