@@ -56,35 +56,36 @@
 #earnings{
 	margin-top:22.1%;
 	margin-left:22.7%;
+	width:49%;
 }
 
 #regular{
-	width:70%
+	/* width:70% */
 }
 
 .hours{
-	margin-left:8.8%;
+	width:21%;
 }
 
 .period{
-	margin-left:8.9%;
+	width:21%;
 }
 
 .ytd{
-	margin-left:9%;
+	width:21%;
 }
 
 /* earnings sections */
 #overtime{
-	margin-top:2.3%;
+	margin-top:3%;
 }
 
 #vacation{
-	margin-top:1.8%;
+	margin-top:3%;
 }
 
 #gross{
-	margin-top:2.1%;
+	margin-top:3.8%;
 }
 
 #deductions{
@@ -121,4 +122,11 @@
 
 #state_ytd{
 	margin-left:5.5%;
+}
+
+.inline{
+	display:inline-block;
+}
+.rate{
+	width:21%;
 }
