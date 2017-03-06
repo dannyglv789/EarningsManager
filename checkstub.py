@@ -200,7 +200,12 @@ def check_stub():
                              fed_ytd=request.form['fed_ytd'],
                              state_tax=request.form['state_tax'],
                              state_ytd=request.form['state_ytd'],
-                             
+                             ytd_gross=request.form['ytd_gross'],
+                             ytd_deductions=request.form['ytd_deductions'],
+                             ytd_net=request.form['ytd_net'],
+                             total=request.form['total'],
+                             bottom_deductions=request.form['bottom_deductions'],
+                             net_pay=request.form['net_pay']
                              )
             user.check_count +=1
             session.add(newCheck)

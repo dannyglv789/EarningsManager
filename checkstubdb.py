@@ -48,12 +48,12 @@ class Check(Base):
     fed_ytd = Column(String(80))
     state_tax = Column(String(80))
     state_ytd = Column(String(80))
-#    ytd_gross = Column(String(80))
-#    ytd_deductions = Column(String(80))
-#    ytd_net = Column(String(80))
-#    total = Column(String(80))
-#    bottom_deductions = Column(String(80))
-#    net_pay = Column(String(80))
+    ytd_gross = Column(String(80))
+    ytd_deductions = Column(String(80))
+    ytd_net = Column(String(80))
+    total = Column(String(80))
+    bottom_deductions = Column(String(80))
+    net_pay = Column(String(80))
 
 class Check_2(Base):
     __tablename__ = 'check2'
