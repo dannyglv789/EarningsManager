@@ -114,7 +114,7 @@ def my_home():
     else:
         abort(403)
 
-# Create and edit functions
+# CREATE AND EDIT FUNCTIONS -- UI TEMPLATES
 @app.route('/')
 @app.route('/checkstub/', methods=['GET','POST'])
 def check_stub():
@@ -183,7 +183,8 @@ def check_stub():
         else:
             # user is a member and can create stubs or user is making
             # complimentary statement
-            newCheck = Check(emp_name=request.form['emp_name'],
+            newCheck = Check(creator=user.id,
+                             emp_name=request.form['emp_name'],
                              social=request.form['social'],
                              rep_period=request.form['rep_period'],
                              pay_date=request.form['pay_date'],
@@ -199,7 +200,8 @@ def check_stub():
                              fed_ytd=request.form['fed_ytd'],
                              state_tax=request.form['state_tax'],
                              state_ytd=request.form['state_ytd'],
-                             creator=user.id)
+                             
+                             )
             user.check_count +=1
             session.add(newCheck)
             session.add(user)
@@ -268,7 +270,7 @@ def full_page_template():
         return (redirect(url_for('check_stub')))
     return render_template('templatethree.html')
 
-# Print views
+# PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpageprint/<int:check_id>')
 def full_page_print(check_id):
     """ full page print out """
