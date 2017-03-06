@@ -8,9 +8,22 @@
 </head>
 <body>
 <h1> Make your own pay stub</h1>
-<div> Full access gets you <br>
-- unlimited use <br>
-- </div>
+<h2 id='full_access'> Full access gets you <br>
+- unlimited access after your complimentary statement<br>
+- access to <a href="{{url_for('full_page_preview')}}">full page earnings template</a> 
+</h2>
+<div id='login_area'> <span> <button id='user_login_button'>
+         
+
+          <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+<a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+
+</fb:login-button>
+
+
+</button></span>
+</div>
+
 <div id="result">
 </div>
 	<script>
@@ -66,16 +79,7 @@
 
 
 <div id="pricing">
-<span> <button id='user_login_button'>
-         
 
-          <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
-<a href='javascript:sendTokenToServer()'>Login with Facebook</a>
-
-</fb:login-button>
-
-
-</button></span>
 </div>
 <!-- <form>
 <p> EMPLOYEE NAME / ADDRESS <input id="name_address" type="text" value = "John Smith 123 Example st"> 

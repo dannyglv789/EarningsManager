@@ -9,6 +9,17 @@ h1{
 	text-align:center;
 }
 
+#login_area{
+	text-align:center;
+}
+
+#full_access{
+	font-family: 'Archivo Narrow', sans-serif;
+	text-align:center;
+}
+#full_access a{
+	text-decoration:none;
+}
 #check-container{
 	margin-left:auto;
 	margin-right:auto;

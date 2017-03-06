@@ -101,6 +101,10 @@ def fbconnect():
     # flash("Now logged in as %s" % login_session['username'])
     return output
 
+@app.route('/fullpagepreview')
+def full_page_preview():
+    return render_template('fullpagepreview.html')
+
 @app.route('/myhome')
 def my_home():
     """ membership home page with opitions to create stub from template or
