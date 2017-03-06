@@ -182,7 +182,7 @@ def check_stub():
             return redirect(checkout_page)
         else:
             # user is a member and can create stubs or user is making
-            # complimentary statements
+            # complimentary statement
             newCheck = Check(emp_name=request.form['emp_name'],
                              social=request.form['social'],
                              rep_period=request.form['rep_period'],

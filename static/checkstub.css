@@ -12,7 +12,7 @@ h1{
 #check-container{
 	margin-left:auto;
 	margin-right:auto;
-	background-image: url("/static/thestubpreview.jpg");
+	background-image: url("/static/template1.jpg");
 	background-repeat: no-repeat;
 	width:980px;
 	height:400px;
@@ -37,37 +37,52 @@ h1{
 	padding-top: 80px;
 }
 
+#emp_name{
+	width:38%;
+}
+
+#rep_period{
+	width:18%;
+	margin-left:2%;
+}
+
 #name_address{
-	width:370px;
-	padding:0px;
+	/* width:370px; */
+	/* padding:0px; */
+	width: 90%;
 	border:none;
 	margin-left:2px;
 }
+
+#social{
+	width:14%;
+}
+
 #ssn{
-width:104px;
-padding: 0px;
+/* width:104px; */
+/* padding: 0px; */
 border:none;
-margin-left:40px;
+float:right;
+/* margin-left:40px; */
 }
 
 #reporting_period{
-	width:165px;
-	padding:0px;
-	border:none;
-	margin-left:40px;
-}
-
-#pay_date{
-	width:94px;
-	padding: 0px;
-	border:none;
-	margin-left: 24px;
+	/* width:165px; */
+	/* padding:0px; */
+	border:none; 
 	
+	margin-left:10%; 
 }
-
 #pay_date_span{
+	width:9%;
+	margin-left:2.5%;
+}
+#pay_date{
+	/* width:94px; */
+	/* padding: 0px; */
+	border:none;
+	margin-left: 23%;
 	
-	margin-left: 4px;
 }
 
 #employee_num{
