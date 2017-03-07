@@ -89,6 +89,14 @@
 	margin-top:1.4%;
 }
 
+#gross_rate{
+	visibility:hidden;
+}
+
+#gross_hours{
+	visibility:hidden;
+}
+
 #deductions{
 	margin: 9.2% 0 0 48%;
 }
