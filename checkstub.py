@@ -347,11 +347,23 @@ def full_page_edit(check_id):
         abort(403)
 
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
-@app.route('/fullpageprint/<int:check_id>')
+@app.route('/fullpage/print/<int:check_id>')
 def full_page_print(check_id):
     """ full page print out """
-    check = session.query(Check_2).filter_by(id=check_id).one()
-    return render_template('fullpage.html', check=check)
+   
+    if check_login_and_csrf() == True:
+        try:
+            check = session.query(Check_2).filter_by(id=check_id).one()
+        except:
+            return abort(404)
+        
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        if user.id != check.creator:
+            abort(403)
+        else:
+            return render_template('fullpage.html', check=check)
+    else:
+        return abort(403)
 
 @app.route('/yourstub/<int:check_id>/')
 def viewCheck(check_id):
