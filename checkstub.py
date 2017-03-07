@@ -232,8 +232,12 @@ def main_template():
     """ Page for creating stubs with template one for
         members
     """
-    if 'facebook_id' in login_session and 'state' in login_session:
-        return render_template('templateone.html')
+    if check_login_and_csrf() == True:
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        if user.is_member == True:
+            return render_template('templateone.html')
+        else:
+            abort(403)
     else:
         abort(403)
 
