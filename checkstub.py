@@ -282,10 +282,47 @@ def full_page_template():
     return render_template('templatethree.html')
 
 # User edit template three
-@app.route('/fullpage/edit/<int:check_id>')
+@app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
     """ full page print out """
     check = session.query(Check_2).filter_by(id=check_id).one()
+    if request.method=='POST':
+        check.company_name=request.form['company_name'],
+        check.company_address=request.form['company_address'],
+        check.company_city=request.form['company_city'],
+        check.pay_begin=request.form['pay_begin'],
+        check.pay_end=request.form['pay_end'],
+        check.pay_date=request.form['pay_date'],
+        check.status=request.form['status'],
+        check.exemptions=request.form['exemptions'],
+        check.emp_name=request.form['emp_name'],
+        check.emp_address=request.form['emp_address'],
+        check.emp_city_state_zip=request.form['emp_city_state_zip'],
+        check.reg_rate=request.form['reg_rate'],
+        check.reg_hours=request.form['reg_hours'],
+        check.reg_period=request.form['reg_period'],
+        check.reg_ytd=request.form['reg_ytd'],
+        check.ov_rate=request.form['ov_rate'],
+        check.ov_period=request.form['ov_period'],
+        check.ov_ytd=request.form['ov_ytd'],
+        check.vac_rate=request.form['vac_rate'],
+        check.vac_hours=request.form['vac_hours'],
+        check.vac_period=request.form['vac_period'],
+        check.vac_ytd=request.form['vac_ytd'],
+        check.gross_period=request.form['gross_period'],
+        check.gross_ytd=request.form['gross_ytd'],
+        check.fed_period=request.form['fed_period'],
+        check.fed_ytd=request.form['fed_ytd'],
+        check.soc_period=request.form['soc_period'],
+        check.soc_ytd=request.form['soc_ytd'],
+        check.state_selection=request.form['state_selection'],
+        check.state_period=request.form['state_period'],
+        check.state_ytd=request.form['state_ytd'],
+        check.net_pay=request.form['net_pay'],
+        check.comments=request.form['comments']
+        session.add(check)
+        session.commit()
+        return redirect(url_for('my_home'))
     return render_template('editthree.html', check=check)
 
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
