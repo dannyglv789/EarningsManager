@@ -282,7 +282,7 @@ def full_page_template():
                                 comments=request.form['comments'])
         session.add(new_statement)
         session.commit()
-        return 'yo'
+        return redirect(url_for('my_home'))
     
     if check_login_and_csrf() == True:
         state = login_session['state']
@@ -332,7 +332,12 @@ def full_page_edit(check_id):
         session.add(check)
         session.commit()
         return redirect(url_for('my_home'))
-    return render_template('editthree.html', check=check)
+
+    if check_login_and_csrf() == True:
+        state = login_session['state']
+        return render_template('editthree.html', check=check, state=state)
+    else:
+        abort(403)
 
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpageprint/<int:check_id>')
