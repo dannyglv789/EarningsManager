@@ -64,8 +64,8 @@
 		
 		<div id="deductions">
 		<div id="fed_income">
-			<input name="fed_period" size='1' class="ded_period">
-			<input name="fed_ytd" size='1' id='fed_ytd'>
+			<input name="fed_period" type='text' size='1' class="ded_period">
+			<input name="fed_ytd" type='text' size='1' id='fed_ytd'>
 		</div>
 		
 		<div id="soc_sec">
@@ -150,6 +150,7 @@
 		</div>
 		
 	</div>
+	    <input name='_csrf_token' type='hidden' value="{{state}}"> 
 		<input id='checkout' type='submit' value='Create'> 
 	</form>
 </body>

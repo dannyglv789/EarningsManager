@@ -89,7 +89,7 @@ class Check_2(Base):
     fed_ytd = Column(String(20))
     soc_period = Column(String(20))
     soc_ytd = Column(String(20))
-    state_selection = Column(String(2))
+    #state_selection = Column(String(2))
     state_period = Column(String(20))
     state_ytd = Column(String(20))
     net_pay = Column(String(20))

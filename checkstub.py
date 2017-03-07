@@ -18,7 +18,15 @@ session = DBSession()
 
 app.secret_key = 'super duper key'
 
-# Login and user home
+# HELPER FUNCTIONS 
+def check_login_and_csrf():
+    """Check for login and csrf token"""
+    if 'facebook_id' in login_session and 'state' in login_session:
+        return True 
+    else:
+        return False
+
+# LOGIN IN AND PROFILE PAGE FUNCTIONS
 @app.route('/testlogin/')
 def test_login():
     # create anti-forgery state token
@@ -233,54 +241,55 @@ def main_template():
 
 @app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():
-    """
-    if 'facebook_id' in login_session and 'state' in login_session:
-        return render_template('templatethree.html')
-    else:
-        abort(403)
-    """
-    user = session.query(User).filter_by(name=login_session['email']).one()
     if request.method == 'POST':
+        if request.form['_csrf_token'] != login_session['state']:
+            abort(403)
+            
+        user = session.query(User).filter_by(name=login_session['email']).one()
         new_statement = Check_2(creator=user.id,
-                               company_name=request.form['company_name'],
-                               company_address=request.form['company_address'],
-                               company_city=request.form['company_city'],
-                               pay_begin=request.form['pay_begin'],
-                               pay_end=request.form['pay_end'],
-                               pay_date=request.form['pay_date'],
-                               status=request.form['status'],
-                               exemptions=request.form['exemptions'],
-                               emp_name=request.form['emp_name'],
-                               emp_address=request.form['emp_address'],
-                               emp_city_state_zip=request.form['emp_city_state_zip'],
-                               reg_rate=request.form['reg_rate'],
-                               reg_hours=request.form['reg_hours'],
-                               reg_period=request.form['reg_period'],
-                               reg_ytd=request.form['reg_ytd'],
-                               ov_rate=request.form['ov_rate'],
-                               ov_period=request.form['ov_period'],
-                               ov_ytd=request.form['ov_ytd'],
-                               vac_rate=request.form['vac_rate'],
-                               vac_hours=request.form['vac_hours'],
-                               vac_period=request.form['vac_period'],
-                               vac_ytd=request.form['vac_ytd'],
-                               gross_period=request.form['gross_period'],
-                               gross_ytd=request.form['gross_ytd'],
-                               fed_period=request.form['fed_period'],
-                               fed_ytd=request.form['fed_ytd'],
-                               soc_period=request.form['soc_period'],
-                               soc_ytd=request.form['soc_ytd'],
-                               state_selection=request.form['state_selection'],
-                               state_period=request.form['state_period'],
-                               state_ytd=request.form['state_ytd'],
-                               net_pay=request.form['net_pay'],
-                               comments=request.form['comments']
-                               )
+                                company_name=request.form['company_name'],
+                                company_address=request.form['company_address'],
+                                company_city=request.form['company_city'],
+                                pay_begin=request.form['pay_begin'],
+                                pay_end=request.form['pay_end'],
+                                pay_date=request.form['pay_date'],
+                                status=request.form['status'],
+                                exemptions=request.form['exemptions'],
+                                emp_name=request.form['emp_name'],
+                                emp_address=request.form['emp_address'],
+                                emp_city_state_zip=request.form['emp_city_state_zip'],
+                                reg_rate=request.form['reg_rate'],
+                                reg_hours=request.form['reg_hours'],
+                                reg_period=request.form['reg_period'],
+                                reg_ytd=request.form['reg_ytd'],
+                                ov_rate=request.form['ov_rate'],
+                                ov_period=request.form['ov_period'],
+                                ov_ytd=request.form['ov_ytd'],
+                                vac_rate=request.form['vac_rate'],
+                                vac_hours=request.form['vac_hours'],
+                                vac_period=request.form['vac_period'],
+                                vac_ytd=request.form['vac_ytd'],
+                                gross_period=request.form['gross_period'],
+                                gross_ytd=request.form['gross_ytd'],
+                                fed_period=request.form['fed_period'],
+                                fed_ytd=request.form['fed_ytd'],
+                                soc_period=request.form['soc_period'],
+                                soc_ytd=request.form['soc_ytd'],
+                                # state_selection=request.form['state_selection'],
+                                state_period=request.form['state_period'],
+                                state_ytd=request.form['state_ytd'],
+                                net_pay=request.form['net_pay'],
+                                comments=request.form['comments'])
         session.add(new_statement)
         session.commit()
-        return (redirect(url_for('check_stub')))
-    return render_template('templatethree.html')
-
+        return 'yo'
+    
+    if check_login_and_csrf() == True:
+        state = login_session['state']
+        return render_template('templatethree.html',state=state)
+    else:
+        abort(403)
+        
 # User edit template three
 @app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
@@ -389,7 +398,14 @@ def square():
         return 'response printed'
     return render_template('squaretrans.html')
 
+
 # UTILITY FUNCTIONS FOR TESTING
+@app.route('/checks')
+def all_check_2():
+    checks = session.query(Check_2).all()
+    for i in checks:
+        print i.id
+    return 'checks printed'
 @app.route('/users')
 def print_users():
     users = session.query(User).all()
