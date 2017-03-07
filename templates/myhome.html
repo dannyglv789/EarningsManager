@@ -16,6 +16,9 @@
 		{%for i in stubs%}
 			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a> <br>
 		{%endfor%}
+		{%for i in statements%}
+			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="">{{i.pay_date}}</a> <br>
+		{%endfor%}
 	</div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <script src="/static/templatethree.js"></script>
 </head>
 <body style="background-color:grey;">
-	<div style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+	<div id='template' style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 	<form action="{{url_for('full_page_template')}}" method="post">
 		<div id="top">
 			<div id='company_name'>
@@ -148,8 +148,9 @@
 			<textarea name="comments"> 
 			</textarea>
 		</div>
+		
 	</div>
-		<input type='submit' style='float:right;'>
+		<input id='checkout' type='submit' value='Create'> 
 	</form>
 </body>
 </html>

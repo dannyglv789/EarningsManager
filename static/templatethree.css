@@ -3,6 +3,11 @@
 	padding-top:5%;
 }
 
+#template{
+		margin-left:auto;
+		margin-right:auto;
+}
+
 #pay_period_section{
 	display: inline-block;
 	float:right;
@@ -118,4 +123,13 @@
 
 #state_ytd{
 	margin-left:5.4%;
+}
+
+#checkout{
+	margin-top:2px;
+	margin-left: 66.5%;
+	border-radius:5px;
+	background-color:#87C540;
+	font-size:18px;
+	width:90px;
 }

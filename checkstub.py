@@ -114,7 +114,8 @@ def my_home():
     if 'facebook_id' in login_session and 'state' in login_session:
         user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
         stubs = session.query(Check).filter_by(creator=user.id)
-        return render_template('myhome.html', stubs=stubs)
+        statements = session.query(Check_2).filter_by(creator=user.id)
+        return render_template('myhome.html', stubs=stubs, statements=statements)
     else:
         abort(403)
 
@@ -238,8 +239,9 @@ def full_page_template():
     else:
         abort(403)
     """
+    user = session.query(User).filter_by(name=login_session['email']).one()
     if request.method == 'POST':
-        new_statement = Check_2(creator=1,
+        new_statement = Check_2(creator=user.id,
                                company_name=request.form['company_name'],
                                company_address=request.form['company_address'],
                                company_city=request.form['company_city'],
