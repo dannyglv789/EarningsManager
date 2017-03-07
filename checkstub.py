@@ -262,6 +262,7 @@ def full_page_template():
                                 reg_period=request.form['reg_period'],
                                 reg_ytd=request.form['reg_ytd'],
                                 ov_rate=request.form['ov_rate'],
+                                # ov_hours=request.form['ov_hours'],
                                 ov_period=request.form['ov_period'],
                                 ov_ytd=request.form['ov_ytd'],
                                 vac_rate=request.form['vac_rate'],
@@ -365,7 +366,7 @@ def full_page_print(check_id):
     else:
         return abort(403)
 
-@app.route('/yourstub/<int:check_id>/')
+@app.route('/stub/<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
     # non logged in user is is denied permission
