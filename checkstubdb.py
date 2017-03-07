@@ -46,6 +46,7 @@ class Check(Base):
     fica_social_ytd = Column(String(80))
     fed_tax = Column(String(80))
     fed_ytd = Column(String(80))
+    # state_selection = Column(String(2))
     state_tax = Column(String(80))
     state_ytd = Column(String(80))
     ytd_gross = Column(String(80))

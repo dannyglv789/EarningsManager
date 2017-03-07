@@ -17,7 +17,7 @@
 			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a> <br>
 		{%endfor%}
 		{%for i in statements%}
-			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="">{{i.pay_date}}</a> <br>
+			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('full_page_print',check_id=i.id)}}">{{i.id}}</a> <br>
 		{%endfor%}
 	</div>
 </body>

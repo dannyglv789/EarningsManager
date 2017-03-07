@@ -281,6 +281,13 @@ def full_page_template():
         return (redirect(url_for('check_stub')))
     return render_template('templatethree.html')
 
+# User edit template three
+@app.route('/fullpage/edit/<int:check_id>')
+def full_page_edit(check_id):
+    """ full page print out """
+    check = session.query(Check_2).filter_by(id=check_id).one()
+    return render_template('editthree.html', check=check)
+
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpageprint/<int:check_id>')
 def full_page_print(check_id):
