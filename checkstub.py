@@ -105,8 +105,6 @@ def fbconnect():
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-
-    # flash("Now logged in as %s" % login_session['username'])
     return output
 
 @app.route('/fullpagepreview')
@@ -239,6 +237,7 @@ def main_template():
     else:
         abort(403)
 
+# user create a template three statement
 @app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():
     if request.method == 'POST':
@@ -290,11 +289,10 @@ def full_page_template():
     else:
         abort(403)
         
-# User edit template three
+# User edit a template three statement
 @app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
     """ full page print out """
-    check = session.query(Check_2).filter_by(id=check_id).one()
     if request.method=='POST':
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
@@ -335,10 +333,16 @@ def full_page_edit(check_id):
         session.add(check)
         session.commit()
         return redirect(url_for('my_home'))
-
+    
+    # check for permission and csrf/login
     if check_login_and_csrf() == True:
+        check = session.query(Check_2).filter_by(id=check_id).one()
+        user = session.query(User).filter_by(name=login_session['email']).one()
         state = login_session['state']
-        return render_template('editthree.html', check=check, state=state)
+        if user.id != check.creator:
+            abort(403)
+        else:
+            return render_template('editthree.html', check=check, state=state)
     else:
         abort(403)
 
