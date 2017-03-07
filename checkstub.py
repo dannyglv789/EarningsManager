@@ -296,6 +296,9 @@ def full_page_edit(check_id):
     """ full page print out """
     check = session.query(Check_2).filter_by(id=check_id).one()
     if request.method=='POST':
+        if request.form['_csrf_token'] != login_session['state']:
+            abort(403)
+            
         check.company_name=request.form['company_name'],
         check.company_address=request.form['company_address'],
         check.company_city=request.form['company_city'],
