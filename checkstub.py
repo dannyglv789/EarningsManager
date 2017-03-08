@@ -268,7 +268,7 @@ def full_page_template():
                                 reg_period=request.form['reg_period'],
                                 reg_ytd=request.form['reg_ytd'],
                                 ov_rate=request.form['ov_rate'],
-                                # ov_hours=request.form['ov_hours'],
+                                ov_hours=request.form['ov_hours'],
                                 ov_period=request.form['ov_period'],
                                 ov_ytd=request.form['ov_ytd'],
                                 vac_rate=request.form['vac_rate'],
@@ -421,7 +421,7 @@ def delete_full_page_statement(check_id):
 
     if check_login_and_csrf() == True:
         # Check that logged in user is check owner, if not 403
-        # visitors get a 403
+        # visitors also get a 403
         user = session.query(User).filter_by(name=login_session['email']).one()
         state = login_session['state']
         if user.id != check.creator:
