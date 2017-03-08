@@ -14,10 +14,14 @@
 <h3 style="font-family:'Archivo Narrow', sans-serif;">My Statements</h3>
 	<div>
 		{%for i in stubs%}
-			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('viewCheck',check_id=i.id)}}">{{i.pay_date}}</a> <br>
+			{{i.pay_date}}<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('viewCheck',check_id=i.id)}}">Print</a> 
+			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('edit_stub_statement',check_id=i.id)}}">Edit</a>
+			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('viewCheck',check_id=i.id)}}">Delete</a><br>
 		{%endfor%}
 		{%for i in statements%}
-			<a style="font-family: 'Archivo Narrow', sans-serif; font-size:3em;" href="{{url_for('full_page_print',check_id=i.id)}}">{{i.id}}</a> <br>
+			{{i.pay_date}} <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_print',check_id=i.id)}}"> print </a> 
+					 <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_edit', check_id=i.id)}}">Edit</a> 
+					 <a href="" style="font-family: 'Archivo Narrow', sans-serif;" >Delete</a><br>
 		{%endfor%}
 	</div>
 </body>
