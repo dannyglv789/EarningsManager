@@ -404,6 +404,20 @@ def edit_stub_statement(check_id):
     else:
         return abort(403)
 
+@app.route('/delete/fullpage/<int:check_id>', methods=['GET','POST'])
+def delete_full_page_statement(check_id):
+    try:
+        check = session.query(Check_2).filter_by(id=check_id).one()
+    except:
+        return abort(404)
+    
+    if request.method == "POST":
+        session.delete(check)
+        session.commit()
+        return 'item deleted'
+    flash('DELETE? No going back')
+    return render_template('fullpagedelete.html',check=check)
+
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpage/print/<int:check_id>')
 def full_page_print(check_id):

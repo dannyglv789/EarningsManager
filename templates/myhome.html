@@ -21,7 +21,7 @@
 		{%for i in statements%}
 			{{i.pay_date}} <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_print',check_id=i.id)}}"> print </a> 
 					 <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_edit', check_id=i.id)}}">Edit</a> 
-					 <a href="" style="font-family: 'Archivo Narrow', sans-serif;" >Delete</a><br>
+					 <a href="{{url_for('delete_full_page_statement', check_id=i.id)}}" style="font-family: 'Archivo Narrow', sans-serif;" >Delete</a><br>
 		{%endfor%}
 	</div>
 </body>
