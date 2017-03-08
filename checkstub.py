@@ -412,13 +412,25 @@ def delete_full_page_statement(check_id):
         return abort(404)
     
     if request.method == "POST":
+        if request.form['_csrf_token'] != login_session['state']:
+            return abort(403)
+        
         session.delete(check)
         session.commit()
-        return 'item deleted'
+        return redirect(url_for('my_home'))
 
-    # GET
-    flash('DELETE? No going back')
-    return render_template('fullpagedelete.html',check=check)
+    if check_login_and_csrf() == True:
+        # Check that logged in user is check owner, if not 403
+        # visitors get a 403
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        state = login_session['state']
+        if user.id != check.creator:
+            abort(403)
+        else:
+            flash('DELETE? No going back')
+            return render_template('fullpagedelete.html',check=check, state=state)
+    else:
+        return abort(403)
 
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpage/print/<int:check_id>')

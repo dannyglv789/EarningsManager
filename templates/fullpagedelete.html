@@ -13,7 +13,9 @@
 							{% endfor %}
 							</ul>
 							<form action="{{url_for('delete_full_page_statement', check_id=check.id)}}" method='POST'>
-							<button id = "got_it"type="submit">YES</button>
+								<input name='_csrf_token' type='hidden' value="{{state}}">
+								<button id = "got_it"type="submit">YES</button>
+							</form>
 						</div>
 					</div>
 					{% endif %}
