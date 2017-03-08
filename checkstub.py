@@ -299,6 +299,11 @@ def full_page_template():
 @app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
     """ full page edit """
+    try:
+        check = session.query(Check_2).filter_by(id=check_id).one()
+    except:
+        abort(404)
+        
     if request.method=='POST':
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
@@ -342,7 +347,6 @@ def full_page_edit(check_id):
     
     # check for permission and csrf/login
     if check_login_and_csrf() == True:
-        check = session.query(Check_2).filter_by(id=check_id).one()
         user = session.query(User).filter_by(name=login_session['email']).one()
         state = login_session['state']
         if user.id != check.creator:
@@ -352,22 +356,51 @@ def full_page_edit(check_id):
     else:
         abort(403)
 
-@app.route('/stub/edit/<int:check_id>')
-def _edit_stub_statement(check_id):
+@app.route('/stub/edit/<int:check_id>', methods=['GET','POST'])
+def edit_stub_statement(check_id):
     """ user edit for stub template """
+    try:
+        check = session.query(Check).filter_by(id=check_id).one()
+    except:
+        return abort(404)
 
+    if request.method == "POST":
+        if request.form['_csrf_token'] != login_session['state']:
+            abort(403)
+        check.emp_name=request.form['emp_name'],
+        check.social=request.form['social'],
+        check.rep_period=request.form['rep_period'],
+        check.pay_date=request.form['pay_date'],
+        check.emp_num=request.form['emp_num'],
+        check.rate=request.form['rate'],
+        check.hours=request.form['hours'],
+        check.current_pay=request.form['current_pay'],
+        check.fica_medi=request.form['fica_medi'],
+        check.fica_social=request.form['fica_social'],
+        check.fica_medi_ytd=request.form['fica_medi_ytd'],
+        check.fica_social_ytd=request.form['fica_social_ytd'],
+        check.fed_tax=request.form['fed_tax'],
+        check.fed_ytd=request.form['fed_ytd'],
+        check.state_tax=request.form['state_tax'],
+        check.state_ytd=request.form['state_ytd'],
+        check.ytd_gross=request.form['ytd_gross'],
+        check.ytd_deductions=request.form['ytd_deductions'],
+        check.ytd_net=request.form['ytd_net'],
+        check.total=request.form['total'],
+        check.bottom_deductions=request.form['bottom_deductions'],
+        check.net_pay=request.form['net_pay']
+        session.add(check)
+        session.commit()
+        return redirect(url_for('my_home'))
     # check if user is logged in and creator of check
     # visitors are denied access
     if check_login_and_csrf() == True:
-        try:
-            check = session.query(Check).filter_by(id=check_id).one()
-        except:
-            return abort(404)
         user = session.query(User).filter_by(name=login_session['email']).one()
+        state = login_session['state']
         if check.creator != user.id:
             return abort(403)
         else:
-            return render_template('editstub.html', check=check)
+            return render_template('editstub.html', check=check, state=state)
     else:
         return abort(403)
 

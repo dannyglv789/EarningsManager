@@ -18,7 +18,7 @@
   <option value="4">4</option>
 </select> 
 <div id ="check-container">
-<form action="{{url_for('check_stub')}}" method="post">
+<form action="{{url_for('edit_stub_statement', check_id=check.id)}}" method="post">
 <div id="top-bar">
 	<div id="emp_name" style='display:inline-block;'> <input name="emp_name" id="name_address" type="text" value = "{{check.emp_name}}"> </div>
 	<div id="social"  style='display:inline-block;'> <input size='3' name="social" id="ssn" type="text" value="{{check.social}}"> </div>
@@ -117,6 +117,7 @@
 	<div> YTD GROSS <input id="ytd_gross" type="text"> </div> 
 	<div> YTD DEDUCTIONS <input id="ytd_deductions" type="text"> </div>
 	<div> YTD NET PAY <input id="ytd_net" type="text"> </div> -->
+	<input name='_csrf_token' type='hidden' value="{{state}}">
 	<input type="submit" id="checkout" value="checkout">
 </form>
 </div>
