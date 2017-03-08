@@ -232,6 +232,8 @@ def main_template():
     """ Page for creating stubs with template one for
         members
     """
+    # user is logged in and granted/denied permission based on
+    # membership status. Visitors are denied access
     if check_login_and_csrf() == True:
         user = session.query(User).filter_by(name=login_session['email']).one()
         if user.is_member == True:
@@ -241,9 +243,9 @@ def main_template():
     else:
         abort(403)
 
-# user create a template three statement
 @app.route('/templatethree', methods=['GET','POST'])
 def full_page_template():
+    """user create a template three statement"""
     if request.method == 'POST':
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
@@ -294,10 +296,9 @@ def full_page_template():
     else:
         abort(403)
         
-# User edit a template three statement
 @app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
-    """ full page print out """
+    """ full page edit """
     if request.method=='POST':
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
@@ -350,6 +351,25 @@ def full_page_edit(check_id):
             return render_template('editthree.html', check=check, state=state)
     else:
         abort(403)
+
+@app.route('/stub/edit/<int:check_id>')
+def _edit_stub_statement(check_id):
+    """ user edit for stub template """
+
+    # check if user is logged in and creator of check
+    # visitors are denied access
+    if check_login_and_csrf() == True:
+        try:
+            check = session.query(Check).filter_by(id=check_id).one()
+        except:
+            return abort(404)
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        if check.creator != user.id:
+            return abort(403)
+        else:
+            return render_template('editstub.html', check=check)
+    else:
+        return abort(403)
 
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpage/print/<int:check_id>')

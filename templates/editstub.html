@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="/static/checkstub.js"></script>
+	<link rel=stylesheet type=text/css href="/static/checkstub.css">
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<h1> Create Stub</h1>
+<div id="pricing">
+</div>
+
+<div> YTD NUM <select id="ytd_num">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select> 
+<div id ="check-container">
+<form action="{{url_for('check_stub')}}" method="post">
+<div id="top-bar">
+	<div id="emp_name" style='display:inline-block;'> <input name="emp_name" id="name_address" type="text" value = "{{check.emp_name}}"> </div>
+	<div id="social"  style='display:inline-block;'> <input size='3' name="social" id="ssn" type="text" value="{{check.social}}"> </div>
+	<div id="rep_period" style='display:inline-block;'> <input name="rep_period" id="reporting_period" type="text" value="{{check.rep_period}}"> </div>
+	<div id="pay_date_span" style='display:inline-block;'> <input name="pay_date"id="pay_date" type="text" size='5' value="{{check.pay_date}}"> </div>
+	<div id="emp_num" style='display:inline-block;'> <input name="emp_num" id="employee_num" type="text" value="{{check.emp_num}}"> </div>
+</div>
+<div id="gross-earnings">
+  <div id="gross_area">
+	<div id="rate_span" style='display:inline-block;'> <input name="rate" id="rate" type="text" value="{{check.rate}}"> </div>
+	<div id="hours_span" style='display:inline-block;'> <input name="hours" id="hours" type="text" value="{{check.hours}}"> </div>
+	<div id="pay_span" style='display:inline-block;'> <input name="current_pay" id="current_pay" type="text" value="{{check.current_pay}}"> </div> 
+  </div>
+</div>
+<div id="deductions"> 
+	<div id="fica_medi"> <input name="fica_medi" id="fica_medi_total" type="text" value="{{check.fica_medi}}"> <input name="fica_medi_ytd" id="fica_medi_ytd" type="text" value="{{check.fica_medi_ytd}}"></div>
+	<div id="fica_social"> <input name="fica_social" id="fica_social_total" type = "text" value="{{check.fica_social}}"> <input name="fica_social_ytd" id="fica_social_ytd" type="text" value="{{check.fica_social_ytd}}"></div>
+	<div id="fed_tax"> <input name="fed_tax" id="federal_tax" type="text" value="{{check.fed_tax}}"> <input name="fed_ytd" id="fed_ytd" type="text" value="{{check.fed_ytd}}"></div>
+	<div id="state_tax_div"> 
+		<select name='state_selection' id="state_select_box">
+				<option value="AL">AL Tax</option>
+				<option value="AK">AK Tax</option>
+				<option value="AZ">AZ Tax</option>
+				<option value="AR">AR Tax</option>
+				<option value="CA">CA Tax</option>
+				<option value="CO">CO Tax</option>
+				<option value="CT">CT Tax</option>
+				<option value="DE">DE Tax</option>
+				
+				<option value="FL">FL Tax</option>
+				<option value="GA">GA Tax</option>
+				<option value="HI">HI Tax</option>
+				<option value="ID">ID Tax</option>
+				<option value="IL">IL Tax</option>
+				<option value="IN">IN Tax</option>
+				<option value="IA">IA Tax</option>
+				<option value="KS">KS Tax</option>
+				
+				<option value="KY">KY Tax</option>
+				<option value="LA">LA Tax</option>
+				<option value="ME">ME Tax</option>
+				<option value="MD">MD Tax</option>
+				<option value="MA">MA Tax</option>
+				<option value="MI">MI Tax</option>
+				<option value="MN">MN Tax</option>
+				<option value="MS">MS Tax</option>
+				
+				<option value="MO">MO Tax</option>
+				<option value="MT">MT Tax</option>
+				<option value="NE">NE Tax</option>
+				<option value="NV">NV Tax</option>
+				<option value="NH">NH Tax</option>
+				<option value="NJ">NJ Tax</option>
+				<option value="NM">NM Tax</option>
+				<option value="NY">NY Tax</option>
+				
+				<option value="NC">NC Tax</option>
+				<option value="ND">ND Tax</option>
+				<option value="OH">OH Tax</option>
+				<option value="OK">OK Tax</option>
+				<option value="OR">OR Tax</option>
+				<option value="PA">PA Tax</option>
+				<option value="RI">RI Tax</option>
+				<option value="SC">SC Tax</option>
+				
+				<option value="SD">SD Tax</option>
+				<option value="TN">TN Tax</option>
+				<option value="TX">TX Tax</option>
+				<option value="UT">UT Tax</option>
+				<option value="VT">VT Tax</option>
+				<option value="VA">VA Tax</option>
+				<option value="WA">WA Tax</option>
+				<option value="WV">WV Tax</option>
+				<option value="WI">WI Tax</option>
+				<option value="WY">WY Tax</option>
+				
+				
+			</select>
+		<input name="state_tax" id="state_tax" type="text" value="{{check.state_tax}}"> 
+		<input name="state_ytd" id="state_tax_ytd" type="text" value="{{check.state_ytd}}"> 
+	
+	</div>
+</div>
+<div id="bottom-left">
+	<input name='ytd_gross' id="ytd_gross" type="text" value="{{check.ytd_gross}}"> 
+	<input name='ytd_deductions' id="ytd_deductions" type="text" value="{{check.ytd_deductions}}"> 
+	<input name='ytd_net' id="ytd_net" type="text" value="{{check.ytd_net}}"> 
+	<input name='total' id="total" type="text" value="{{check.total}}"> 
+	<input name='bottom_deductions' id="bottom_deductions" type="text" value="{{check.bottom_deductions}}">
+	<input name='net_pay' id="net_pay" type="text" value="{{check.net_pay}}"> 
+</div>
+
+<!-- <div> TOTAL <input id="total" type="text"> </div>
+	<div> DEDUCTIONS <input id="deductions" type="text"> </div>
+	<div> NET PAY <input id="net_pay" type="text"> </div>
+	<div> YTD GROSS <input id="ytd_gross" type="text"> </div> 
+	<div> YTD DEDUCTIONS <input id="ytd_deductions" type="text"> </div>
+	<div> YTD NET PAY <input id="ytd_net" type="text"> </div> -->
+	<input type="submit" id="checkout" value="checkout">
+</form>
+</div>
+</div>
+<div id="footer">
+<a href="#"> faq </a> <a href="#"> chini </a> <a href="#"> mini </a>
+</div>
+</body>
+</html>
