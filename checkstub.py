@@ -415,6 +415,8 @@ def delete_full_page_statement(check_id):
         session.delete(check)
         session.commit()
         return 'item deleted'
+
+    # GET
     flash('DELETE? No going back')
     return render_template('fullpagedelete.html',check=check)
 

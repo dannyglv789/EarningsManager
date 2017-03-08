@@ -1,0 +1,106 @@
+<DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="/static/fullpageprint.css">
+</head>
+{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<div id="myFlash" class="flash">
+						<div class="flash-content">
+							<ul style="list-style-type:none" class=flashes>
+							{% for message in messages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+							</ul>
+							<form action="{{url_for('delete_full_page_statement', check_id=check.id)}}" method='POST'>
+							<button id = "got_it"type="submit">YES</button>
+						</div>
+					</div>
+					{% endif %}
+					{% endwith %}
+<body style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+		<div id="top">
+			<div id='company_name'>
+				<span id="company_name_field"> {{check.company_name}}</span><br>
+				<span id="company_address_field"> {{check.company_address}} </span> <br>
+				<span id="company_city_field"> {{check.company_city}} </span>
+			</div>
+			<div id='pay_period_section'>
+				<span id='pay_period'>{{check.pay_begin}}</span><br>
+				<div id='pay_end'>{{check.pay_end}}</div>
+				<div id='pay_date'> {{check.pay_date}}</div>
+			</div>
+		</div>
+		<div id="employee_info_middle">
+			<div id="exemptions_info">
+				<div> {{check.status}}</div> <br> 
+				<div id='exemptions'> {{check.exemptions}} </div>
+			</div>
+			
+			<div id="employee_address_info">
+				<div id='name'>{{check.emp_name}}</div> <br> 
+				<div id='street_address'>{{check.emp_address}}</div><br>
+				<div id='city_state_zip'>{{check.emp_city_state_zip}}</div>
+			</div>
+		</div>
+		<div id="earnings">
+			<div id='regular'> 
+				<div class='rate' style='display:inline-block;'> {{check.reg_rate}} </div> 
+				<div style='display:inline-block;' class='hours'> {{check.reg_hours}}</div>
+				<div style='display:inline-block;' class='period'>{{check.reg_period}}</div>
+				<div style='display:inline-block;' class='ytd'>{{check.reg_ytd}}</div>
+			</div>
+			
+			<div id='overtime'> 
+				<div class='rate inline'  size='1' value='0.00'>{{check.ov_rate}}</div>
+				<div class='hours inline'> {{check.ov_hours}}</div>
+				<div class='period inline' class='inline'>{{check.ov_period}}</div>
+				<div class='ytd inline' class='inline'>{{check.ov_ytd}}</div>
+			</div>
+			
+			<div id='vacation'> 
+				<div class='rate inline'>{{check.vac_rate}}</div>
+				<div class='hours inline'> {{check.vac_hours}}</div>
+				<div class='period inline'>{{check.vac_period}}</div>
+				<div class='ytd inline'>{{check.vac_ytd}}</div>
+			</div>
+			
+			<div id='gross'> 
+				<div class='rate inline' style="visibility:hidden;"> 0.00 </div>
+				<div class='hours inline' style="visibility:hidden;"> 0.00 </div>
+				<div class='period inline'>{{check.gross_period}}</div>
+				<div class='ytd inline'>{{check.gross_ytd}}</div>
+			</div>
+		</div>
+		
+		<div id="deductions">
+		<div id="fed_income">
+			<span class="ded_period">{{check.fed_period}}</span>
+			<span id='fed_ytd'>{{check.fed_ytd}}</span>
+		</div>
+		
+		<div id="soc_sec">
+			<span>{{check.soc_period}}</span>
+			<span id='fed_ytd'>{{check.soc_ytd}}</span>
+		</div>
+		
+		</div>
+		<div id="state_selection" style="">
+			
+			<span> CA Tax </span>
+			<span id='state_period'>{{check.state_period}}</span>
+			<span id='state_ytd'>{{check.state_ytd}}</span>
+
+		</div>
+		
+		<div id="net_pay">
+			<span> {{check.net_pay}} </span>
+		</div>
+		
+		<div id="comments">
+			<div name="comments"> 
+				{{check.comments}}
+			</div>
+		</div>
+</body>
+</html>
