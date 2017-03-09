@@ -26,7 +26,7 @@ def check_login_and_csrf():
     else:
         return False
 
-# ---- LOGIN IN AND PROFILE PAGE FUNCTIONS ----
+# ---- LOGIN IN/out AND PROFILE PAGE FUNCTIONS ----
 @app.route('/testlogin/')
 def test_login():
     # create anti-forgery state token
@@ -104,6 +104,15 @@ def fbconnect():
     output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     return output
 
+@app.route('/logout')
+def logout():
+    if check_login_and_csrf() == True:
+        login_session.pop("access_token")
+        login_session.pop("facebook_id")
+        login_session.pop("state")
+        login_session.pop("email")
+        return redirect(url_for("check_stub"))
+    
 @app.route('/fullpagepreview')
 def full_page_preview():
     return render_template('fullpagepreview.html')

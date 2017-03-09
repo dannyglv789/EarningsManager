@@ -89,6 +89,7 @@ margin-right:20px;
 }
 
 #hours{
+	margin-left:14%;
 	width:40px;
 }
 #hours_span{
@@ -97,7 +98,7 @@ margin-right:20px;
 
 #current_pay{
 	width:80px;
-	margin-left:50px;
+	margin-left:80%;
 }
 
 #deductions{
