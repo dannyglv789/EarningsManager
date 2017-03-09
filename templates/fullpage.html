@@ -3,6 +3,30 @@
 <head>
 	<link rel=stylesheet type=text/css href="/static/fullpageprint.css">
 </head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	$(window).click(function(){
+		$('#myFlash').css("display", "none")
+	})
+	
+});
+</script>
+{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<div id="myFlash" class="flash">
+						<div class="flash-content">
+							<ul style="list-style-type:none" class=flashes>
+							{% for message in messages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+							</ul>
+								<input name='_csrf_token' type='hidden' value="{{state}}">
+								<button id = "got_it">Got it</button>
+						</div>
+					</div>
+					{% endif %}
+					{% endwith %}
 <body style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
 		<div id="top">
 			<div id='company_name'>

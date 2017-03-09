@@ -445,6 +445,7 @@ def full_page_print(check_id):
         if user.id != check.creator:
             abort(403)
         else:
+            flash("Please use Chrome and make sure background graphics is checked under print options")
             return render_template('fullpage.html', check=check)
     else:
         return abort(403)
