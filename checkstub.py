@@ -26,7 +26,7 @@ def check_login_and_csrf():
     else:
         return False
 
-# LOGIN IN AND PROFILE PAGE FUNCTIONS
+# ---- LOGIN IN AND PROFILE PAGE FUNCTIONS ----
 @app.route('/testlogin/')
 def test_login():
     # create anti-forgery state token
@@ -98,10 +98,7 @@ def fbconnect():
 #    login_session['user_id'] = user_id
 
     output = ''
-#    output += '<h1>Welcome, '
-#    output += login_session['email']
 
-#    output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
@@ -209,6 +206,7 @@ def check_stub():
                              fica_social_ytd=request.form['fica_social_ytd'],
                              fed_tax=request.form['fed_tax'],
                              fed_ytd=request.form['fed_ytd'],
+                             state_selection=request.form['state_selection'],
                              state_tax=request.form['state_tax'],
                              state_ytd=request.form['state_ytd'],
                              ytd_gross=request.form['ytd_gross'],
@@ -281,7 +279,7 @@ def full_page_template():
                                 fed_ytd=request.form['fed_ytd'],
                                 soc_period=request.form['soc_period'],
                                 soc_ytd=request.form['soc_ytd'],
-                                # state_selection=request.form['state_selection'],
+                                state_selection=request.form['state_selection'],
                                 state_period=request.form['state_period'],
                                 state_ytd=request.form['state_ytd'],
                                 net_pay=request.form['net_pay'],
