@@ -379,6 +379,7 @@ def edit_stub_statement(check_id):
         check.fica_social_ytd=request.form['fica_social_ytd'],
         check.fed_tax=request.form['fed_tax'],
         check.fed_ytd=request.form['fed_ytd'],
+        check.state_selection=request.form['state_selection'],
         check.state_tax=request.form['state_tax'],
         check.state_ytd=request.form['state_ytd'],
         check.ytd_gross=request.form['ytd_gross'],
