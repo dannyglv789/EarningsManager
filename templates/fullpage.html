@@ -22,7 +22,7 @@ $(document).ready(function(){
 							{% endfor %}
 							</ul>
 								<input name='_csrf_token' type='hidden' value="{{state}}">
-								<button id = "got_it">Got it</button>
+								<button id = "got_it">Continue</button>
 						</div>
 					</div>
 					{% endif %}
@@ -84,21 +84,21 @@ $(document).ready(function(){
 		
 		<div id="deductions">
 		<div id="fed_income">
-			<div class="ded_period inline">{{check.fed_period}}</div>
+			<div id="ded_period" class="inline">{{check.fed_period}}</div>
 			<div class="inline" id='fed_ytd'>{{check.fed_ytd}}</div>
 		</div>
 		
 		<div id="soc_sec">
-			<div class="inline">{{check.soc_period}}</div>
-			<div class="inline" id='fed_ytd'>{{check.soc_ytd}}</div>
+			<div id="soc_sec_period" class="inline">{{check.soc_period}}</div>
+			<div class="inline" id='soc_sec_ytd'>{{check.soc_ytd}}</div>
 		</div>
 		
 		</div>
 		<div id="state_selection" style="">
 			
-			<span> {{check.state_selection}} Tax</span>
-			<span id='state_period'>{{check.state_period}}</span>
-			<span id='state_ytd'>{{check.state_ytd}}</span>
+			<div class="inline"> {{check.state_selection}} Tax</div>
+			<div class="inline" id='state_period'>{{check.state_period}}</div>
+			<div class="inline" id='state_ytd'>{{check.state_ytd}}</div>
 
 		</div>
 		

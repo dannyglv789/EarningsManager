@@ -91,20 +91,41 @@
 #deductions{
 	margin: 9.2% 0 0 44.6%;
 }
+
+#fed_income{
+		width:40%;
+}
+
+#ded_period{
+	width: 40%;
+}
+
 #fed_ytd{
-	margin-left:8.1%;
+	width:41%;
+	margin-left:6.1%;
 }
 
 #soc_sec{
+	width:40%;
 	margin-top:3.2%;
 }
 
+#soc_sec_period{
+	width:40%;
+}
+
+#soc_sec_ytd{
+	width:41%;
+	margin-left:6.1%;
+}
+
 #state_selection{
+	width:62%;
 	margin:1.4% 0 0 4.4%;
 }
 
 #net_pay{
-	margin:8.7% 0 0 39.00%;
+	margin:8.7% 0 0 38.00%;
 }
 
 #comments{
@@ -117,11 +138,13 @@
 }
 
 #state_period{
-	margin-left:35.4%;
+	width:16%;
+	margin-left:50.8%;
 }
 
 #state_ytd{
-	margin-left:5.5%;
+	width:16%;
+	margin-left:.3%;
 }
 
 .inline{
