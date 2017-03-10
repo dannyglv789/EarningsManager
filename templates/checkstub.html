@@ -7,7 +7,9 @@
 	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<h1> Make your own pay stub</h1>
+<h1> Make your own pay stub</h1> 
+<div id="result"style="display:inline-block;"></div>
+
 <h2 id='full_access'> Full access gets you <br>
 - unlimited access after your complimentary statement<br>
 - access to <a href="{{url_for('full_page_preview')}}">full page earnings template</a> 
@@ -60,8 +62,9 @@
       success: function(result) {
         // Handle or verify the server response if necessary.
         if (result) {
-		$('#user_login_button').hide()
-		$('#result').append(result)
+		window.location.replace("http://localhost:5000/checkstub/");
+//		$('#user_login_button').hide()
+//		$('#result').append(result)
 //          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
 //         setTimeout(function() {
 //          window.location.href = "/checkstub";
