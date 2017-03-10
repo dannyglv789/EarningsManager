@@ -231,7 +231,9 @@ def check_stub():
             session.commit()
             return redirect(url_for('my_home'))
     if 'facebook_id' in login_session and 'state' in login_session:
-        return render_template('loggedinfront.html')
+        pic = login_session['picture']
+        print pic
+        return render_template('loggedinfront.html',pic=pic)
     return render_template('checkstub.html',state=state)
 
 @app.route('/templateone')
