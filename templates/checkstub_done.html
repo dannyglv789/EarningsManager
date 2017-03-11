@@ -10,38 +10,7 @@
 <body>
  
 <div>
-<!--
-<div id ="check-container">
 
-<div id="top-bar">
-	<div class="finished_stub_items" id="emp_name"> <div id="name_address"> {{check.emp_name}}</div> </div>
-	<div class="finished_stub_items" id="social"> <div id="ssn">{{check.social}}</div></div>
-	<div class="finished_stub_items" id="rep_period"> <div id="reporting_period">{{check.rep_period}}</div></div>
-	<div class="finished_stub_items" id="pay_date_span"> <div id="pay_date">{{check.pay_date}}</div></div>
-	<div class="finished_stub_items" id="emp_num"> <div id="employee_num"> {{check.emp_num}}</div></div>
-</div>
-<div id="gross-earnings">
-  <div id="gross_area">
-	<div class="finished_stub_items" id="rate_span"><div id="rate">{{check.rate}}</div></div>
-	<div class="finished_stub_items" id="hours_span"><div id="hours">{{check.hours}}</div></div>
-	<div class="finished_stub_items" id="pay_span"> <div id="current_pay">{{check.current_pay}}</div> </div> 
-  </div>
-</div>
-<div id="deductions"> 
-	<div id="fica_medi"> <span id="fica_medi_total">{{check.fica_medi}}</span> <span id="fica_medi_ytd">{{check.fica_medi_ytd}}</span></div>
-	<div id="fica_social"> <span id="fica_social_total">{{check.fica_social}}</span><span id="fica_social_ytd">{{check.fica_social_ytd}}</span></div>
-	<div id="fed_tax"> <span id="federal_tax">{{check.fed_tax}}</span><span id="fed_ytd">{{check.fed_ytd}}</span></div>
-	<div id="state_tax_div"> <span name="state_tax">{{check.state_tax}}</span> <span id="state_tax_ytd">{{check.state_ytd}}</span></div>
-</div>
-<div id="bottom-left">
-	<input id="ytd_gross" type="text"> 
-	<input id="ytd_deductions" type="text"> 
-	<input id="ytd_net" type="text"> 
-	<input id="total" type="text"> 
-	<input id="bottom_deductions" type="text">
-	<input id="net_pay" type="text"> 
-</div>
--->
 <div id ="check-container">
 <form action="{{url_for('check_stub')}}" method="post">
 <div id="top-bar">
@@ -78,21 +47,8 @@
 	<div id="net_pay" style='display:inline-block;'>{{check.net_pay}}</div> 
 </div>
 
-<!-- <div> TOTAL <input id="total" type="text"> </div>
-	<div> DEDUCTIONS <input id="deductions" type="text"> </div>
-	<div> NET PAY <input id="net_pay" type="text"> </div>
-	<div> YTD GROSS <input id="ytd_gross" type="text"> </div> 
-	<div> YTD DEDUCTIONS <input id="ytd_deductions" type="text"> </div>
-	<div> YTD NET PAY <input id="ytd_net" type="text"> </div> -->
-	<!--<input type="submit" id="checkout" value="checkout"> -->
 </form>
 </div>
-<!-- <div> TOTAL <input id="total" type="text"> </div>
-	<div> DEDUCTIONS <input id="deductions" type="text"> </div>
-	<div> NET PAY <input id="net_pay" type="text"> </div>
-	<div> YTD GROSS <input id="ytd_gross" type="text"> </div> 
-	<div> YTD DEDUCTIONS <input id="ytd_deductions" type="text"> </div>
-	<div> YTD NET PAY <input id="ytd_net" type="text"> </div> -->
 
 </div>
 </div>
