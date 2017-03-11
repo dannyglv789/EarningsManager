@@ -20,7 +20,7 @@ app.secret_key = 'super duper key'
 
 # HELPER FUNCTIONS 
 def check_login_and_csrf():
-    """Check for login and csrf token"""
+    """Check if user is logged in and csrf token is in session"""
     if 'facebook_id' in login_session and 'state' in login_session:
         return True 
     else:
@@ -67,7 +67,6 @@ def fbconnect():
     data = json.loads(result)
 #    login_session['provider'] = 'facebook'
 #    login_session['username'] = data["name"]
-#    login_session['facebook_id'] = data["id"]
 
     # The token must be stored in the login_session in order to properly logout, let's strip out the information before the equals sign in our token
     stored_token = token.split("=")[1]
@@ -307,7 +306,7 @@ def full_page_template():
         
 @app.route('/fullpage/edit/<int:check_id>', methods=['GET','POST'])
 def full_page_edit(check_id):
-    """ full page edit """
+    """ user edit for fullpage template """
     try:
         check = session.query(Check_2).filter_by(id=check_id).one()
     except:
@@ -402,6 +401,7 @@ def edit_stub_statement(check_id):
         session.add(check)
         session.commit()
         return redirect(url_for('my_home'))
+    
     # check if user is logged in and creator of check
     # visitors are denied access
     if check_login_and_csrf() == True:
@@ -480,6 +480,7 @@ def viewCheck(check_id):
     if user.id != check.creator:
         return abort(403)
     else:
+        flash("Please use Chrome and make sure background graphics is checked under print options")
         return render_template('checkstub_done.html',check=check)
 
 @app.route('/thankyou/')
@@ -527,6 +528,7 @@ def all_check_2():
     for i in checks:
         print i.id
     return 'checks printed'
+
 @app.route('/users')
 def print_users():
     users = session.query(User).all()

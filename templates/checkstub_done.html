@@ -7,6 +7,29 @@
 	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
 	
 </head>
+<script>
+$(document).ready(function(){
+	$(window).click(function(){
+		$('#myFlash').css("display", "none")
+	})
+	
+});
+</script>
+{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<div id="myFlash" class="flash">
+						<div class="flash-content">
+							<ul style="list-style-type:none" class=flashes>
+							{% for message in messages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+							</ul>
+								<input name='_csrf_token' type='hidden' value="{{state}}">
+								<button id = "got_it">Continue</button>
+						</div>
+					</div>
+					{% endif %}
+					{% endwith %}
 <body>
  
 <div>
