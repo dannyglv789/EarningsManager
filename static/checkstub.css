@@ -202,29 +202,29 @@ float:right;
 
 #ytd_gross{
 	width:70px;
-	margin-left:45px;
+	margin-left:4.9%;
 	
 }
 #ytd_deductions{
 	width:70px;
-	margin-left:65px;
+	margin-left:6.6%;
 }
 #ytd_net{
 	width:70px;
-	margin-left:93px;
+	margin-left:9.8%;
 }
 
 #total{
 	width:60px;
-	margin-left:174px;
+	margin-left:18%;
 }
 #bottom_deductions{
 	width:60px;
-	margin-left:54px;
+	margin-left:5.5%;
 }
 #net_pay{
 	width:60px;
-	margin-left:80px;
+	margin-left:8.6%;
 }
 #checkout{
 	float:right;
