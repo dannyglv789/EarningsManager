@@ -1,3 +1,13 @@
+#profile_pic{
+	margin-left:85%;
+	border-radius:50%;
+}
+
+#nav_menu{
+	border:none;
+	width:18px;
+}
+
 h1{
 	font-family: 'Archivo Narrow', sans-serif;
 	text-align:center;

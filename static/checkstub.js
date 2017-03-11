@@ -59,6 +59,15 @@ $(document).ready(function(){
   })
 */
   
-  
+$("#nav_menu").change(function(){
+	picked = $("#nav_menu option:selected").text();
+	console.log(picked)
+	if(picked === "profile"){
+		window.location.href = "http://localhost:5000/myhome/";
+	}
+	else{
+		window.location.href = "http://localhost:5000/logout/";
+	}
+})
   
 }); 

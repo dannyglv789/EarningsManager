@@ -26,7 +26,7 @@ def check_login_and_csrf():
     else:
         return False
 
-# ---- LOGIN IN/out AND PROFILE PAGE FUNCTIONS ----
+# ---- LOGIN IN/OUT AND PROFILE PAGE FUNCTIONS ----
 @app.route('/testlogin/')
 def test_login():
     # create anti-forgery state token
@@ -104,7 +104,7 @@ def fbconnect():
     output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     return output
 
-@app.route('/logout')
+@app.route('/logout/')
 def logout():
     if check_login_and_csrf() == True:
         login_session.pop("access_token")
@@ -117,7 +117,7 @@ def logout():
 def full_page_preview():
     return render_template('fullpagepreview.html')
 
-@app.route('/myhome')
+@app.route('/myhome/')
 def my_home():
     """ membership home page with opitions to create stub from template or
         view created stubs
