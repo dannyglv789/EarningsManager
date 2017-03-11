@@ -16,7 +16,7 @@
 		{%for i in stubs%}
 			{{i.pay_date}}<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('viewCheck',check_id=i.id)}}">Print</a> 
 			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('edit_stub_statement',check_id=i.id)}}">Edit</a>
-			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('viewCheck',check_id=i.id)}}">Delete</a><br>
+			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('delete_stub_statement',check_id=i.id)}}">Delete</a><br>
 		{%endfor%}
 		{%for i in statements%}
 			{{i.pay_date}} <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_print',check_id=i.id)}}"> print </a> 
