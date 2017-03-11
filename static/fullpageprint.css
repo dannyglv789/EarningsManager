@@ -137,14 +137,19 @@
 	font-family: 'Times New Roman', Times, serif; font-size:17px;
 }
 
+#state_code{
+	margin-left:.6%;
+	width:18%;
+}
+
 #state_period{
 	width:16%;
-	margin-left:50.8%;
+	margin-left:45.1%;
 }
 
 #state_ytd{
 	width:16%;
-	margin-left:.3%;
+	margin-left:.6%;
 }
 
 .inline{
