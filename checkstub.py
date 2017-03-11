@@ -442,6 +442,34 @@ def delete_full_page_statement(check_id):
     else:
         return abort(403)
 
+@app.route('/delete/stub/<int:check_id>/', methods=['GET','POST'])
+def delete_stub_statement(check_id):
+    try:
+        check = session.query(Check).filter_by(id=check_id).one()
+    except:
+        return abort(404)
+
+    if request.method == "POST":
+        if request.form['_csrf_token'] != login_session['state']:
+            return abort(403)
+        
+        session.delete(check)
+        session.commit()
+        return redirect(url_for('my_home'))
+
+    if check_login_and_csrf() == True:
+        # Check that logged in user is check owner, if not 403
+        # visitors also get a 403
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        state = login_session['state']
+        if user.id != check.creator:
+            abort(403)
+        else:
+            flash('DELETE? No going back')
+            return render_template('stubdelete.html',check=check, state=state)
+    else:
+        return abort(403)
+
 # PRINT OUTS -- SAVED STATEMENTS FOR PRINTING
 @app.route('/fullpage/print/<int:check_id>')
 def full_page_print(check_id):
