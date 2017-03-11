@@ -3,16 +3,22 @@
 <head> 
 	<link rel=stylesheet type=text/css href="/static/checkstub.css">
 	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="/static/checkstub.js"></script>
 </head>
 <body>
+<div id="top_nav"> <img id="profile_pic" src="{{pic}}" width="100px"> 
+<select id="nav_menu"><option style="display:none;" value="0"></option><option id="profile_option">profile</option><option>log out</option></select> 
+</div>
 <h1>My Earnings Manager</h1>
-<h3 style="font-family:'Archivo Narrow', sans-serif;">Create earnings statement from template</h3>
-	<div id='stub_templates' style='background-color:grey'>
-		<a href="{{url_for('full_page_template')}}"><img src='/static/checktemplate2mark.jpg' width='200px' height='200px' style='padding:10px;'></a>
-		<a href="{{url_for('main_template')}}"><img src='/static/thestubpreview.jpg' width='275px' height='180px' style='padding:10px;'></a>
-	</div>
+<h3 id="home_header" style="font-family:'Archivo Narrow', sans-serif;">Create earnings statement from template</h3>
+<div id="template_selection">
+	<a href="{{url_for('full_page_template')}}"><img src="/static/full_page_icon.png" width="100px"></a>
+	<a href="{{url_for('check_stub')}}"><img src="/static/stub_icon.png" width="100px"></a>
+</div>
+
+<div id="statements_area">
 <h3 style="font-family:'Archivo Narrow', sans-serif;">My Statements</h3>
-	<div>
 		{%for i in stubs%}
 			{{i.pay_date}}<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('viewCheck',check_id=i.id)}}">Print</a> 
 			<a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('edit_stub_statement',check_id=i.id)}}">Edit</a>
@@ -23,6 +29,6 @@
 					 <a style="font-family: 'Archivo Narrow', sans-serif;" href="{{url_for('full_page_edit', check_id=i.id)}}">Edit</a> 
 					 <a href="{{url_for('delete_full_page_statement', check_id=i.id)}}" style="font-family: 'Archivo Narrow', sans-serif;" >Delete</a><br>
 		{%endfor%}
-	</div>
+</div>
 </body>
 </html>

@@ -126,7 +126,8 @@ def my_home():
         user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
         stubs = session.query(Check).filter_by(creator=user.id)
         statements = session.query(Check_2).filter_by(creator=user.id)
-        return render_template('myhome.html', stubs=stubs, statements=statements)
+        pic = login_session['picture']
+        return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
     else:
         abort(403)
 
@@ -300,7 +301,11 @@ def full_page_template():
     
     if check_login_and_csrf() == True:
         state = login_session['state']
-        return render_template('templatethree.html',state=state)
+        user = session.query(User).filter_by(name=login_session['email']).one()
+        if user.is_member == True:
+            return render_template('templatethree.html',state=state)
+        else:
+            return "Get full access now to access this template!"
     else:
         abort(403)
         
