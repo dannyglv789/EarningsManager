@@ -451,11 +451,12 @@ def delete_full_page_statement(check_id):
 def delete_stub_statement(check_id):
     try:
         check = session.query(Check).filter_by(id=check_id).one()
+        user = session.query(User).filter_by(name=login_session['email']).one()
     except:
-        return abort(404)
+        return abort(403)
 
     if request.method == "POST":
-        if request.form['_csrf_token'] != login_session['state']:
+        if request.form['_csrf_token'] != login_session['state'] or user.id != check.creator:
             return abort(403)
         
         session.delete(check)
@@ -465,7 +466,6 @@ def delete_stub_statement(check_id):
     if check_login_and_csrf() == True:
         # Check that logged in user is check owner, if not 403
         # visitors also get a 403
-        user = session.query(User).filter_by(name=login_session['email']).one()
         state = login_session['state']
         if user.id != check.creator:
             abort(403)
@@ -495,7 +495,7 @@ def full_page_print(check_id):
     else:
         return abort(403)
 
-@app.route('/stub/<int:check_id>/')
+@app.route('/stub/id=<int:check_id>/')
 def viewCheck(check_id):
     """view for checkstub completed by user. Only creator has access"""
     # non logged in user is is denied permission
