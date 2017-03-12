@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import random, string, httplib2
 import unirest
 import json
@@ -172,10 +173,10 @@ def check_stub():
                                         #                                      string.digits) for i in range(20)),
                                         'line_items': [
                                             {
-                                                'name': "stub",
+                                                'name': "365 day membership",
                                                 'quantity': '1',
                                                 'base_price_money':{
-                                                    'amount': 400,
+                                                    'amount': 699,
                                                     'currency': 'USD'
 
                                                     }
@@ -520,7 +521,10 @@ def viewCheck(check_id):
 def thank_you():
 
     # once site is on aws get transaction id, checkout id and reference id
-    # from the url and compare to originals for verification
+    # from this url and compare to originals for verification
+    # after checkout square will appened the results to the url
+    # once user completes checkout change is_member to true and add the date
+    # signup_date
 
     # transaction_id = request.args.get('')
     # checkout_id = request.args.get('')

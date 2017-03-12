@@ -27,6 +27,7 @@ class User(Base):
     name = Column(String)
     is_member = Column(Boolean,default=False)
     check_count = Column(Integer,default=0)
+    #signup_date = Column(Datetime)
     
 class Check(Base):
     __tablename__ = 'check'
