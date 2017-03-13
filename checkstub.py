@@ -495,6 +495,10 @@ def full_page_print(check_id):
             return render_template('fullpage.html', check=check)
     else:
         return abort(403)
+    
+@app.route('/frequentasked/')
+def frequent_questions():
+    return render_template('faq.html')
 
 @app.route('/stub/id=<int:check_id>/')
 def viewCheck(check_id):
@@ -531,48 +535,7 @@ def thank_you():
     # reference_id = request.args.get('')
 
     return render_template('thankyou.html')
-
-# UTILITY FUNCTIONS FOR TESTING
-@app.route('/checks')
-def all_check_2():
-    checks = session.query(Check_2).all()
-    for i in checks:
-        print i.id
-    return 'checks printed'
-
-@app.route('/users')
-def print_users():
-    users = session.query(User).all()
-    for i in users:
-        print i.name
-        print i.f_id
-    return 'users printed'
-
-@app.route('/signupdate/')
-def change_signup_date():
-    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-    user.signup_date = datetime.today()
-    session.add(user)
-    session.commit()
-    print user.signup_date
-    return "date printed"
-    print user.signup_date
-@app.route('/membershipstatus/')
-def switch_membership_status():
-    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
-    if user.is_member == False:
-        user.is_member = True
-        session.add(user)
-        session.commit()
-        print user.is_member
-        return 'membership status switched'
-    else:
-        user.is_member = False
-        session.add(user)
-        session.commit()
-        print user.is_member
-        return 'membership status switched'
     
 if __name__ == '__main__':
-    app.debug = True
+#    app.debug = True
     app.run(host = '0.0.0.0', port = 5000)
