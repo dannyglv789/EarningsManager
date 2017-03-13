@@ -9,7 +9,7 @@ app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from checkstubdb import Check,Check_2, User, Base
-from cred import location_id, access_token
+from cred import secret_key, location_id, access_token
 
 # engine and db connection
 engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
@@ -17,7 +17,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-app.secret_key = 'super duper key'
+app.secret_key = secret_key
 
 # HELPER FUNCTIONS 
 def check_login_and_csrf():
@@ -531,32 +531,6 @@ def thank_you():
     # reference_id = request.args.get('')
 
     return render_template('thankyou.html')
-
-@app.route('/squarepayment/', methods=['GET','POST'])
-def square():
-    """ square payment form and post to process payment"""
-    
-    if request.method == "POST":
-
-        # make the request to charge endpoint, completing transaction
-        card_nonce = request.form['nonce']
-        response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions',
-                                headers={'Accept': 'application/json',
-                                         'Content-Type': 'application/json',
-                                         'Authorization': 'Bearer ' + access_token,
-                                         },
-                                params = json.dumps({'card_nonce': card_nonce,
-                                                     'amount_money': {'amount': 100,
-                                                                      'currency': 'USD'
-                                                                      },
-                                                     'idempotency_key': str(uuid.uuid1())
-                                                     })
-                                )
-        
-        print response.body
-        return 'response printed'
-    return render_template('squaretrans.html')
-
 
 # UTILITY FUNCTIONS FOR TESTING
 @app.route('/checks')
