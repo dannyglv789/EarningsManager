@@ -548,6 +548,15 @@ def print_users():
         print i.f_id
     return 'users printed'
 
+@app.route('/signupdate/')
+def change_signup_date():
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+    user.signup_date = datetime.today()
+    session.add(user)
+    session.commit()
+    print user.signup_date
+    return "date printed"
+    print user.signup_date
 @app.route('/membershipstatus/')
 def switch_membership_status():
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()

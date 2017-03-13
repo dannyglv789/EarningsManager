@@ -5,7 +5,7 @@ import os
 import sys
 
 # These will come in handy when we are writing our Mapper code
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, DateTime
 
 # We will use declarative base in the configuration and class code
 from sqlalchemy.ext.declarative import declarative_base
@@ -27,7 +27,7 @@ class User(Base):
     name = Column(String)
     is_member = Column(Boolean,default=False)
     check_count = Column(Integer,default=0)
-    #signup_date = Column(Datetime)
+    signup_date = Column(DateTime)
     
 class Check(Base):
     __tablename__ = 'check'
