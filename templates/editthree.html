@@ -1,0 +1,158 @@
+<DOCTYPE html>
+<html>
+<head>
+<link rel=stylesheet type=text/css href="/static/templatethree.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="/static/templatethree.js"></script>
+</head>
+<body style="background-color:grey;">
+	<div id='template' style="background-image:url('/static/fullpagecomplete.jpg');width:612px;height:792px; background-repeat:no-repeat;margin:background-color:grey;">
+	<form action="{{url_for('full_page_edit',check_id=check.id)}}" method="post">
+		<div id="top">
+			<div id='company_name'>
+				<input name='company_name' type='text' id="company_name_field" value='{{check.company_name}}'> <br>
+				<input name='company_address' type='text' id="company_address_field" value='{{check.company_address}}'> <br>
+				<input name='company_city' type='text' id="company_city_field" value='{{check.company_city}}'>
+			</div>
+			<div id='pay_period_section'>
+				<input name="pay_begin" type='text' id='pay_period' size='5' value="{{check.pay_begin}}"> <br>
+				<input name="pay_end" type='text' id='pay_end' size='5' value="{{check.pay_end}}"> <br>
+				<input name="pay_date" type='text' id='pay_date' size='5' value="{{check.pay_date}}">
+			</div>
+		</div>
+		<div id="employee_info_middle">
+			<div  id="exemptions_info">
+				<input name='status' type='text' value='{{check.status}}'> <br> 
+				<input name='exemptions' id='exemptions' type='text' value='{{check.exemptions}}'>
+			</div>
+			
+			<div id="employee_address_info">
+				<input name="emp_name" type='text' id='name' value='{{check.emp_name}}'> <br> 
+				<input name='emp_address' type='text' id='street_address' value='{{check.emp_address}}'> <br>
+				<input name='emp_city_state_zip' type='text' id='city_state_zip' value='{{check.emp_city_state_zip}}'>
+			</div>
+		</div>
+		<div id="earnings">
+			<div id='regular'> 
+				<input name="reg_rate" type='text' id='reg_rate' size='1' value='{{check.reg_rate}}'> 
+				<input name="reg_hours" type='text' id='reg_hours' class='hours' size='1' value='{{check.reg_hours}}'>
+				<input name='reg_period' type='text' id='reg_period'class='period' size='1' value='{{check.reg_period}}'>
+				<input name='reg_ytd' type='text' class='ytd' size='1' value='{{check.reg_ytd}}'>
+			</div>
+			
+			<div id='overtime'> 
+				<input name="ov_rate" type='text' id='ov_rate' size='1' value='{{check.ov_rate}}'> 
+				<input name="ov_hours" type='text' id='ov_hours' class='hours' size='1' value='{{check.ov_hours}}'>
+				<input name='ov_period' type='text' id='ov_period' class='period' size='1' value='{{check.ov_period}}'>
+				<input name='ov_ytd' type='text' class='ytd' size='1' value='{{check.ov_ytd}}'>
+			</div>
+			
+			<div id='vacation'> 
+				<input name="vac_rate" type='text' id='rate' size='1' value='{{check.vac_rate}}'> 
+				<input name="vac_hours" type='text' class='hours' size='1' value='{{check.vac_hours}}'>
+				<input name='vac_period' type='text' class='period' size='1' value='{{check.vac_period}}'>
+				<input name='vac_ytd' type='text' class='ytd' size='1' value='{{check.vac_ytd}}'>
+			</div>
+			
+			<div id='gross'> 
+				<input name="gross_rate" type='text' id='rate' size='1' value='0.00'> 
+				<input name="gross_hours" type='text' class='hours' size='1' value='0.00'>
+				<input name="gross_period" type='text' class='period' size='1' value='{{check.gross_period}}'>
+				<input name="gross_ytd" type='text' class='ytd' size='1' value='{{check.gross_ytd}}'>
+			</div>
+		</div>
+		
+		<div id="deductions">
+		<div id="fed_income">
+			<input name="fed_period" size='1' class="ded_period" value="{{check.fed_period}}">
+			<input name="fed_ytd" size='1' id='fed_ytd' value="{{check.fed_ytd}}">
+		</div>
+		
+		<div id="soc_sec">
+			<input name="soc_period" size='1' value="{{check.soc_period}}">
+			<input name="soc_ytd" size='1' id='fed_ytd' value="{{check.soc_ytd}}">
+		</div>
+		
+		</div>
+		<div id="state_selection" style="">
+			<select name='state_selection' id="state_select_box">
+				<option value="AL">AL Tax</option>
+				<option value="AK">AK Tax</option>
+				<option value="AZ">AZ Tax</option>
+				<option value="AR">AR Tax</option>
+				<option value="CA">CA Tax</option>
+				<option value="CO">CO Tax</option>
+				<option value="CT">CT Tax</option>
+				<option value="DE">DE Tax</option>
+				
+				<option value="FL">FL Tax</option>
+				<option value="GA">GA Tax</option>
+				<option value="HI">HI Tax</option>
+				<option value="ID">ID Tax</option>
+				<option value="IL">IL Tax</option>
+				<option value="IN">IN Tax</option>
+				<option value="IA">IA Tax</option>
+				<option value="KS">KS Tax</option>
+				
+				<option value="KY">KY Tax</option>
+				<option value="LA">LA Tax</option>
+				<option value="ME">ME Tax</option>
+				<option value="MD">MD Tax</option>
+				<option value="MA">MA Tax</option>
+				<option value="MI">MI Tax</option>
+				<option value="MN">MN Tax</option>
+				<option value="MS">MS Tax</option>
+				
+				<option value="MO">MO Tax</option>
+				<option value="MT">MT Tax</option>
+				<option value="NE">NE Tax</option>
+				<option value="NV">NV Tax</option>
+				<option value="NH">NH Tax</option>
+				<option value="NJ">NJ Tax</option>
+				<option value="NM">NM Tax</option>
+				<option value="NY">NY Tax</option>
+				
+				<option value="NC">NC Tax</option>
+				<option value="ND">ND Tax</option>
+				<option value="OH">OH Tax</option>
+				<option value="OK">OK Tax</option>
+				<option value="OR">OR Tax</option>
+				<option value="PA">PA Tax</option>
+				<option value="RI">RI Tax</option>
+				<option value="SC">SC Tax</option>
+				
+				<option value="SD">SD Tax</option>
+				<option value="TN">TN Tax</option>
+				<option value="TX">TX Tax</option>
+				<option value="UT">UT Tax</option>
+				<option value="VT">VT Tax</option>
+				<option value="VA">VA Tax</option>
+				<option value="WA">WA Tax</option>
+				<option value="WV">WV Tax</option>
+				<option value="WI">WI Tax</option>
+				<option value="WY">WY Tax</option>
+				
+				
+			</select>
+			
+			<input name='state_period' id='state_period' type='text' size='1' value="{{check.state_period}}">
+			<input name='state_ytd' id='state_ytd' type='text' size='1' value="{{check.state_ytd}}">
+
+		</div>
+		
+		<div id="net_pay">
+			<input name='net_pay' size='3' value="{{check.net_pay}}">
+		</div>
+		
+		<div id="comments">
+			<textarea name="comments"> 
+			{{check.comments}}
+			</textarea>
+		</div>
+		
+	</div>
+		<input name='_csrf_token' type='hidden' value="{{state}}">
+		<input id='checkout' type='submit' value='Edit'> 
+	</form>
+</body>
+</html>

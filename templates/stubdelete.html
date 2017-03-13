@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="{{url_for('static',filename='checkstub.js')}}"></script>
+	<link rel=stylesheet type=text/css href="{{url_for('static',filename='checkstub_done_v2.css')}}">
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+	
+</head>
+
+{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<div id="myFlash" class="flash">
+						<div class="flash-content">
+							<ul style="list-style-type:none" class=flashes>
+							{% for message in messages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+							</ul>
+							<form action="{{url_for('delete_stub_statement', check_id=check.id)}}" method='POST'>
+								<input name='_csrf_token' type='hidden' value="{{state}}">
+								<button id = "got_it"type="submit">YES</button>
+							</form>
+						</div>
+					</div>
+					{% endif %}
+					{% endwith %}
+
+<body>
+ 
+<div>
+
+<div id ="check-container">
+<form action="{{url_for('check_stub')}}" method="post">
+<div id="top-bar">
+	<div id="emp_name" style='display:inline-block;'> <div id="name_address" style="display:inline-block"> {{check.emp_name}}</div> </div>
+	<div id="social"  style='display:inline-block;'> <div style="display:inline-block" id="ssn">{{check.social}} </div></div>
+	<div id="rep_period" style='display:inline-block;'> <div style="display:inline-block" name="rep_period" id="reporting_period">{{check.rep_period}}</div></div>
+	<div id="pay_date_span" style='display:inline-block;'> <div style="display:inline-block" name="pay_date"id="pay_date">{{check.pay_date}}</div></div>
+	<div id="emp_num" style='display:inline-block;'> <div name="emp_num" id="employee_num">{{check.emp_num}}</div>
+</div>
+<div id="gross-earnings">
+  <div id="gross_area">
+	<div id="rate_span" style='display:inline-block;'> <div name="rate" id="rate" style="display:inline-block">{{check.rate}}</div></div>
+	<div id="hours_span" style='display:inline-block;'> <div name="hours" id="hours"> {{check.hours}}</div></div>
+	<div id="pay_span" style='display:inline-block;'> <div name="current_pay" id="current_pay">{{check.current_pay}}</div></div> 
+  </div>
+</div>
+<div id="deductions"> 
+	<div id="fica_medi"> <div style='display:inline-block;' name="fica_medi" id="fica_medi_total">{{check.fica_medi}}</div> <div name="fica_medi_ytd" id="fica_medi_ytd" style='display:inline-block;'>{{check.fica_medi_ytd}}</div> </div>
+	<div id="fica_social"> <div style='display:inline-block;' name="fica_social" id="fica_social_total">{{check.fica_social}}</div><div name="fica_social_ytd" id="fica_social_ytd" style='display:inline-block;'>{{check.fica_social_ytd}}</div></div>
+	<div id="fed_tax"> <div name="fed_tax" id="federal_tax" style='display:inline-block;'>{{check.fed_tax}}</div> <div name="fed_ytd" id="fed_ytd" style='display:inline-block;'>{{check.fed_ytd}}</div></div>
+	<div id="state_tax_div"> 
+		<div id="state_selection" style='display:inline-block;'>{{check.state_selection}} Tax </div>
+		<div style='display:inline-block;' name="state_tax" id="state_tax"> {{check.state_tax}}</div> 
+		<div style='display:inline-block;' name="state_ytd" id="state_tax_ytd">{{check.state_ytd}}</div> 
+	
+	</div>
+</div>
+<div id="bottom-left">
+	<div id="ytd_gross" style='display:inline-block;'>{{check.ytd_gross}}</div> 
+	<div id="ytd_deductions" style='display:inline-block;'>{{check.ytd_deductions}}</div> 
+	<div id="ytd_net" style='display:inline-block;'>{{check.ytd_net}}</div>
+	<div id="total" style='display:inline-block;'>{{check.total}}</div> 
+	<div id="bottom_deductions" style='display:inline-block;'>{{check.bottom_deductions}}</div>
+	<div id="net_pay" style='display:inline-block;'>{{check.net_pay}}</div> 
+</div>
+
+</form>
+</div>
+
+</div>
+</div>
+<div id="footer">
+</div>
+</body>
+</html>
