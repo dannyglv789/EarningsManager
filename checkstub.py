@@ -9,7 +9,7 @@ app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from checkstubdb import Check,Check_2, User, Base
-from cred import secret_key, location_id, access_token
+from cred import secret_key, location_id, sq_access_token
 
 # engine and db connection
 engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
@@ -159,7 +159,7 @@ def check_stub():
             response = unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/checkouts',
                                 headers={'Accept': 'appication/json',
                                          'Content-Type': 'application/json',
-                                         'Authorization': 'Bearer ' + access_token,
+                                         'Authorization': 'Bearer ' + sq_access_token,
                                          },
                                 params = json.dumps({
                                     
@@ -521,7 +521,7 @@ def viewCheck(check_id):
         flash("Please use Chrome and make sure background graphics is checked under print options")
         return render_template('checkstub_done.html',check=check)
 
-@app.route('/thankyou/')
+@app.route('/thankyou')
 def thank_you():
 
     # once site is on aws get transaction id, checkout id and reference id
@@ -530,12 +530,42 @@ def thank_you():
     # once user completes checkout change is_member to true and add the date
     # signup_date
 
-    # transaction_id = request.args.get('')
-    # checkout_id = request.args.get('')
-    # reference_id = request.args.get('')
+    # transaction_id = request.args.get('transactionId')
+    # checkout_id = request.args.get('checkoutId')
+    # reference_id = request.args.get('referenceId')
 
-    return render_template('thankyou.html')
+    # establish user or deny access
+    try:
+        user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+    except:
+        return abort(403)
+    
+    transaction_id = "PX6FYxznBubFcSdh4PFMrJleV"
+
+    # request to square api to retrieve transaction id and amount for
+    # comparison to those in the url 
+    request = unirest.get('https://connect.squareup.com/v2/locations/' + location_id + '/transactions/' + transaction_id,
+                                headers={'Accept': 'appication/json',
+                                         'Content-Type': 'application/json',
+                                         'Authorization': 'Bearer ' + sq_access_token,
+                                         })
+
+    # response object containing transaction id and and amount from request
+    # if transaction id and amount match, set user.is_member to true
+    response = request.body['transaction']['tenders'][0]
+    response_transaction_id = response['transaction_id']
+    response_amount = response['amount_money']['amount']
+
+    if response_amount == 299 and response_transaction_id == transaction_id:
+        user.is_member = True
+        user.signup_date = datetime.today()
+        session.add(user)
+        session.commit()
+        return redirect(url_for('my_home'))
+    else:
+        return "Sorry something went wrong. Please check your email" 
+#    return render_template('thankyou.html')
     
 if __name__ == '__main__':
-#    app.debug = True
+    app.debug = True
     app.run(host = '0.0.0.0', port = 5000)
