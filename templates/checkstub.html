@@ -14,16 +14,10 @@
 - unlimited access for 1yr<br>
 - access to <a href="{{url_for('full_page_preview')}}">full page earnings template</a> 
 </h2>
-<div id='login_area'> <span> <button id='user_login_button'>
-         
-
-          <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
-<a href='javascript:sendTokenToServer()'>Login with Facebook</a>
-
-</fb:login-button>
-
-
-</button></span>
+<div id='login_area'>
+    <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+		<a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+    </fb:login-button>
 </div>
 
 <div id="result">
