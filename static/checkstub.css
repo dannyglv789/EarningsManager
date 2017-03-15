@@ -159,8 +159,13 @@ float:right;
 }
 
 #fica_medi{
-	/* margin-left:80.1%; */
 	margin: .8% 0 0 80.1%;
+}
+
+@-moz-document url-prefix() {
+    #fica_medi{
+		margin: .6% 0 0 80.1%;
+    }
 }
 #fica_medi_total{
 	width:40px;
@@ -171,9 +176,15 @@ float:right;
 }
 
 #fica_social{
-	/* height:32px; */
 	margin: .9% 0 0 80.1%;
 }
+
+@-moz-document url-prefix() {
+    #fica_social{
+		margin: .6% 0 0 80.1%;
+    }
+}
+
 #fica_social_ytd{
 	margin-left:60px;
     width:40px;
@@ -226,10 +237,23 @@ float:right;
 	margin-left:9.8%;
 }
 
+@-moz-document url-prefix() {
+    #ytd_net{
+		margin-left: 9.5%;
+    }
+}
+
 #total{
 	width:60px;
 	margin-left:18%;
 }
+
+@-moz-document url-prefix() {
+    #total{
+		margin-left: 17.5;
+    }
+}
+
 #bottom_deductions{
 	width:60px;
 	margin-left:5.5%;
