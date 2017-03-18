@@ -97,7 +97,7 @@ class Check_2(Base):
     comments = Column(String(180))
     
 # End of file code
-engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
+engine = create_engine('postgresql://daniel:ByeByeMan@localhost/stub')
 # goes into the db and adds the classes we create as tables, DB Session establishes
 #link betweeen code we execute in session and db
 Base.metadata.create_all(engine)

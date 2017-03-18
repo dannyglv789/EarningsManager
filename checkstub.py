@@ -12,7 +12,7 @@ from checkstubdb import Check,Check_2, User, Base
 from cred import secret_key, location_id, sq_access_token
 
 # engine and db connection
-engine = create_engine('postgresql://daniel:Seven11ok@localhost/stub')
+engine = create_engine('postgresql://daniel:ByeByeMan@localhost/stub')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -128,6 +128,21 @@ def my_home():
         stubs = session.query(Check).filter_by(creator=user.id)
         statements = session.query(Check_2).filter_by(creator=user.id)
         pic = login_session['picture']
+        
+        if user.is_member == True:
+            # if 365 day membership has expired, user._ismember is reset to False
+            # the user is then directed to their profile page
+            if user.signup_date + timedelta(days=365) >= datetime.today():
+                user.is_member = False
+                session.add(user)
+                session.commit()
+                return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
+            else:
+                # membership is still active 
+                return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
+
+        # in this case, the user is logged in and not a member
+        # they are instantly directed to their profile page.
         return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
     else:
         abort(403)
@@ -565,7 +580,62 @@ def thank_you():
     else:
         return "Sorry something went wrong. Please check your email" 
 #    return render_template('thankyou.html')
+
+# UTILITIES
+
+@app.route('/deleteaccount/', methods=['GET','POST'])
+def delete_account():
+    if check_login_and_csrf() == True:
+        # Check that logged in user is check owner, if not 403
+        # visitors also get a 403
+        user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
+        if request.method == "POST":
+            checks = session.query(Check).filter_by(creator=user.id)
+            statements = session.query(Check_2).filter_by(creator=user.id)
+
+            # delete all associated statements
+            for i in checks:
+                session.delete(i)
+            for i in statements:
+                session.delete(i)
     
+            session.delete(user)
+            session.commit()
+            return redirect(url_for('check_stub'))
+    else:
+        return redirect(url_for('check_stub'))
+        return render_template('deleteaccount.html',user=user)
+
+
+# utilites
+@app.route('/membershipstatus/')
+def switch_membership_status():
+    user = session.query(User).filter_by(f_id="1033699863443530").one()
+    if user.is_member == False:
+        user.is_member = True
+        user.signup_date = datetime.today()
+        session.add(user)
+        session.commit()
+        print "user.is_member = "
+        print user.is_member
+        print user.signup_date
+        return 'membership status switched'
+    else:
+        user.is_member = False
+        session.add(user)
+        session.commit()
+        print "user.is_member = "
+        print user.is_member
+        return 'membership status switched'
+
+
+@app.route('/changesignupdate/')
+def change_signup_date():
+    user = session.query(User).filter_by(f_id="1033699863443530").one()
+    user.signup_date = user.signup_date + timedelta(days=366)
+    print user.signup_date
+    return "signup date forwareded a year and printed"
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host = '0.0.0.0', port = 5000)

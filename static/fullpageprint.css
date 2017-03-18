@@ -12,6 +12,19 @@
 #pay_date{
 	margin-top:9.7%;
 }
+
+@-moz-document url-prefix() {
+    #pay_date{
+		margin-top:2.7%;
+    }
+}
+
+@-moz-document url-prefix() {
+    #pay_date{
+		margin-top;
+    }
+}
+
 #pay_end{
 	margin-top:7%;
 }
@@ -36,6 +49,14 @@
 	margin-left:22%;
 }
 
+@-moz-document url-prefix() {
+    #exemptions_info{
+		display:inline-block;
+		margin-top:6.2%;
+		margin-left:22%;
+    }
+}
+
 #employee_address_info{
 	display:inline-block;
 	margin:1.5% 0 0 66%;
@@ -46,6 +67,12 @@
 	margin-top:-26%;
 }
 
+@-moz-document url-prefix() {
+    #exemptions{
+		margin-top:-34%;
+    }
+}
+
 #street_address{
 	margin-top:-10%;
 }
@@ -53,10 +80,19 @@
 #city_state_zip{
 	margin-top:-10%;
 }
+
 #earnings{
 	margin-top:22.1%;
 	margin-left:22.7%;
 	width:49%;
+}
+
+@-moz-document url-prefix() {
+    #earnings{
+		margin-top:20.1%;
+		margin-left:22.7%;
+		width:49%;
+    }
 }
 
 #regular{
@@ -84,12 +120,30 @@
 	margin-top:3%;
 }
 
+@-moz-document url-prefix() {
+    #vacation{
+		margin-top:2.5%;
+    }
+}
+
 #gross{
 	margin-top:3.8%;
 }
 
+@-moz-document url-prefix() {
+    #gross{
+		margin-top:2.6%;
+    }
+}
+
 #deductions{
 	margin: 9.2% 0 0 44.6%;
+}
+
+@-moz-document url-prefix() {
+    #deductions{
+		margin: 8.9% 0 0 44.6%;
+    }
 }
 
 #fed_income{
@@ -110,6 +164,13 @@
 	margin-top:3.2%;
 }
 
+@-moz-document url-prefix() {
+    #soc_sec{
+		width:40%;
+	    margin-top:2.7%;
+    }
+}
+
 #soc_sec_period{
 	width:40%;
 }
@@ -126,6 +187,12 @@
 
 #net_pay{
 	margin:8.7% 0 0 38.00%;
+}
+
+@-moz-document url-prefix() {
+    #net_pay{
+		margin:7.7% 0 0 38.00%;
+    }
 }
 
 #comments{
