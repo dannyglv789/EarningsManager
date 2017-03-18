@@ -5,11 +5,11 @@ import json
 import uuid
 from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json, redirect
 from flask import flash
-app = Flask(__name__)
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from checkstubdb import Check,Check_2, User, Base
 from cred import secret_key, location_id, sq_access_token
+app = Flask(__name__)
 
 # engine and db connection
 engine = create_engine('postgresql://daniel:ByeByeMan@localhost/stub')
@@ -17,6 +17,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# secret key
 app.secret_key = secret_key
 
 # HELPER FUNCTIONS 
