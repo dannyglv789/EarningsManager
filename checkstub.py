@@ -583,8 +583,7 @@ def thank_you():
         return "Sorry something went wrong. Please check your email" 
 #    return render_template('thankyou.html')
 
-# UTILITIES
-
+# Utilities for testing
 @app.route('/deleteaccount/', methods=['GET','POST'])
 def delete_account():
     if check_login_and_csrf() == True:
@@ -608,8 +607,6 @@ def delete_account():
         return redirect(url_for('check_stub'))
         return render_template('deleteaccount.html',user=user)
 
-
-# utilites
 @app.route('/membershipstatus/')
 def switch_membership_status():
     user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
