@@ -3,7 +3,7 @@ import random, string, httplib2
 import unirest
 import json
 import uuid
-from flask import Flask, render_template, url_for, request,
+from flask import Flask, render_template, url_for, request
 from flask import session as login_session, make_response, abort, json, redirect
 from flask import flash
 from sqlalchemy import create_engine, update
@@ -13,7 +13,7 @@ from cred import secret_key, location_id, sq_access_token
 app = Flask(__name__)
 
 # engine and db connection
-engine = create_engine('postgresql://daniel:SByeByeMan@localhost/stub')
+engine = create_engine('postgresql://daniel: ByeByeMan@localhost/stub')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -124,8 +124,8 @@ def my_home():
     """ membership home page with opitions to create stub from template or
         view created stubs
     """
-    # logged in user with csrf token is directed home all others get 403 
-    if 'facebook_id' in login_session and 'state' in login_session:
+    # logged in user with csrf token is directed home all others get 403
+    if check_login_and_csrf() == True:
         user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
         stubs = session.query(Check).filter_by(creator=user.id)
         statements = session.query(Check_2).filter_by(creator=user.id)
