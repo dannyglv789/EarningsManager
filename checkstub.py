@@ -30,14 +30,6 @@ def check_login_and_csrf():
         return False
 
 # ---- LOGIN IN/OUT AND PROFILE PAGE FUNCTIONS ----
-@app.route('/testlogin/')
-def test_login():
-    # create anti-forgery state token
-    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
-    login_session['state'] = state
-    return render_template('fblogin.html',state=state)
-
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
@@ -164,8 +156,8 @@ def check_stub():
     login_session['state'] = state
     
     if request.method == 'POST':
-        if 'facebook_id' not in login_session or 'state' not in login_session:
-            return redirect(url_for('test_login'))
+        if check_login_and_csrf() == False:
+            return redirect(url_for('check_stub'))
         
         user = session.query(User).filter_by(name=login_session['email']).one()
 
