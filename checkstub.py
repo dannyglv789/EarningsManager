@@ -3,7 +3,8 @@ import random, string, httplib2
 import unirest
 import json
 import uuid
-from flask import Flask, render_template, url_for, request, session as login_session, make_response, abort, json, redirect
+from flask import Flask, render_template, url_for, request,
+from flask import session as login_session, make_response, abort, json, redirect
 from flask import flash
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
@@ -12,7 +13,7 @@ from cred import secret_key, location_id, sq_access_token
 app = Flask(__name__)
 
 # engine and db connection
-engine = create_engine('postgresql://daniel:ByeByeMan@localhost/stub')
+engine = create_engine('postgresql://daniel:SByeByeMan@localhost/stub')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -611,7 +612,7 @@ def delete_account():
 # utilites
 @app.route('/membershipstatus/')
 def switch_membership_status():
-    user = session.query(User).filter_by(f_id="1033699863443530").one()
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     if user.is_member == False:
         user.is_member = True
         user.signup_date = datetime.today()
@@ -632,7 +633,7 @@ def switch_membership_status():
 
 @app.route('/changesignupdate/')
 def change_signup_date():
-    user = session.query(User).filter_by(f_id="1033699863443530").one()
+    user = session.query(User).filter_by(f_id=login_session['facebook_id']).one()
     user.signup_date = user.signup_date + timedelta(days=366)
     print user.signup_date
     return "signup date forwareded a year and printed"
