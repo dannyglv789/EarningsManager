@@ -6,3 +6,5 @@ checkstub.py
 
 checkstubdb.py
     - Contains database models
+
+Python 2.7 Flask 0.08 sqlalchemy 0.7.4
