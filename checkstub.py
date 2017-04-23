@@ -1,14 +1,16 @@
 from datetime import datetime, timedelta
-import random, string, httplib2
+import random
+import string
+import httplib2
 import unirest
 import json
 import uuid
 from flask import Flask, render_template, url_for, request
-from flask import session as login_session, make_response, abort, json, redirect
-from flask import flash
+from flask import session as login_session, make_response, abort, json
+from flask import flash, redirect
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
-from checkstubdb import Check,Check_2, User, Base
+from checkstubdb import Check, Check_2, User, Base
 from cred import secret_key, location_id, sq_access_token
 app = Flask(__name__)
 
@@ -21,15 +23,19 @@ session = DBSession()
 # secret key
 app.secret_key = secret_key
 
-# HELPER FUNCTIONS 
+# HELPER FUNCTIONS
+
+
 def check_login_and_csrf():
     """Check if user is logged in and csrf token is in session"""
     if 'facebook_id' in login_session and 'state' in login_session:
-        return True 
+        return True
     else:
         return False
 
 # ---- LOGIN IN/OUT AND PROFILE PAGE FUNCTIONS ----
+
+
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
@@ -52,8 +58,6 @@ def fbconnect():
     userinfo_url = "https://graph.facebook.com/v2.4/me"
     # strip expire tag from access token
     token = result.split("&")[0]
-
-
     url = 'https://graph.facebook.com/v2.4/me?%s&fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
@@ -68,7 +72,8 @@ def fbconnect():
     login_session['access_token'] = stored_token
     login_session['facebook_id'] = data["id"]
     login_session['state'] = state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
+                                             for x in xrange(32)
+                                             )
 
     # see if user exists
     try:
@@ -77,7 +82,7 @@ def fbconnect():
     # if user doesnt exist create user
     except:
         email = data['email']
-        new_user = User(name=email,f_id=data['id'])
+        new_user = User(name=email, f_id=data['id'])
         session.add(new_user)
         session.commit()
         login_session['email'] = email
@@ -98,6 +103,7 @@ def fbconnect():
     output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     return output
 
+
 @app.route('/logout/')
 def logout():
     if check_login_and_csrf() == True:
@@ -106,10 +112,12 @@ def logout():
         login_session.pop("state")
         login_session.pop("email")
         return redirect(url_for("check_stub"))
-    
+
+
 @app.route('/fullpagepreview')
 def full_page_preview():
     return render_template('fullpagepreview.html')
+
 
 @app.route('/myhome/')
 def my_home():
@@ -331,39 +339,39 @@ def full_page_edit(check_id):
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
             
-        check.company_name=request.form['company_name'],
-        check.company_address=request.form['company_address'],
-        check.company_city=request.form['company_city'],
-        check.pay_begin=request.form['pay_begin'],
-        check.pay_end=request.form['pay_end'],
-        check.pay_date=request.form['pay_date'],
-        check.status=request.form['status'],
-        check.exemptions=request.form['exemptions'],
-        check.emp_name=request.form['emp_name'],
-        check.emp_address=request.form['emp_address'],
-        check.emp_city_state_zip=request.form['emp_city_state_zip'],
-        check.reg_rate=request.form['reg_rate'],
-        check.reg_hours=request.form['reg_hours'],
-        check.reg_period=request.form['reg_period'],
-        check.reg_ytd=request.form['reg_ytd'],
-        check.ov_rate=request.form['ov_rate'],
-        check.ov_period=request.form['ov_period'],
-        check.ov_ytd=request.form['ov_ytd'],
-        check.vac_rate=request.form['vac_rate'],
-        check.vac_hours=request.form['vac_hours'],
-        check.vac_period=request.form['vac_period'],
-        check.vac_ytd=request.form['vac_ytd'],
-        check.gross_period=request.form['gross_period'],
-        check.gross_ytd=request.form['gross_ytd'],
-        check.fed_period=request.form['fed_period'],
-        check.fed_ytd=request.form['fed_ytd'],
-        check.soc_period=request.form['soc_period'],
-        check.soc_ytd=request.form['soc_ytd'],
-        check.state_selection=request.form['state_selection'],
-        check.state_period=request.form['state_period'],
-        check.state_ytd=request.form['state_ytd'],
-        check.net_pay=request.form['net_pay'],
-        check.comments=request.form['comments']
+        check.company_name = request.form['company_name'],
+        check.company_address = request.form['company_address'],
+        check.company_city = request.form['company_city'],
+        check.pay_begin = request.form['pay_begin'],
+        check.pay_end = request.form['pay_end'],
+        check.pay_date = request.form['pay_date'],
+        check.status = request.form['status'],
+        check.exemptions = request.form['exemptions'],
+        check.emp_name = request.form['emp_name'],
+        check.emp_address = request.form['emp_address'],
+        check.emp_city_state_zip = request.form['emp_city_state_zip'],
+        check.reg_rate = request.form['reg_rate'],
+        check.reg_hours = request.form['reg_hours'],
+        check.reg_period = request.form['reg_period'],
+        check.reg_ytd = request.form['reg_ytd'],
+        check.ov_rate = request.form['ov_rate'],
+        check.ov_period = request.form['ov_period'],
+        check.ov_ytd = request.form['ov_ytd'],
+        check.vac_rate = request.form['vac_rate'],
+        check.vac_hours = request.form['vac_hours'],
+        check.vac_period = request.form['vac_period'],
+        check.vac_ytd = request.form['vac_ytd'],
+        check.gross_period = request.form['gross_period'],
+        check.gross_ytd = request.form['gross_ytd'],
+        check.fed_period = request.form['fed_period'],
+        check.fed_ytd = request.form['fed_ytd'],
+        check.soc_period = request.form['soc_period'],
+        check.soc_ytd = request.form['soc_ytd'],
+        check.state_selection = request.form['state_selection'],
+        check.state_period = request.form['state_period'],
+        check.state_ytd = request.form['state_ytd'],
+        check.net_pay = request.form['net_pay'],
+        check.comments = request.form['comments']
         session.add(check)
         session.commit()
         return redirect(url_for('my_home'))
@@ -390,29 +398,29 @@ def edit_stub_statement(check_id):
     if request.method == "POST":
         if request.form['_csrf_token'] != login_session['state']:
             abort(403)
-        check.emp_name=request.form['emp_name'],
-        check.social=request.form['social'],
-        check.rep_period=request.form['rep_period'],
-        check.pay_date=request.form['pay_date'],
-        check.emp_num=request.form['emp_num'],
-        check.rate=request.form['rate'],
-        check.hours=request.form['hours'],
-        check.current_pay=request.form['current_pay'],
-        check.fica_medi=request.form['fica_medi'],
-        check.fica_social=request.form['fica_social'],
-        check.fica_medi_ytd=request.form['fica_medi_ytd'],
-        check.fica_social_ytd=request.form['fica_social_ytd'],
-        check.fed_tax=request.form['fed_tax'],
-        check.fed_ytd=request.form['fed_ytd'],
-        check.state_selection=request.form['state_selection'],
-        check.state_tax=request.form['state_tax'],
-        check.state_ytd=request.form['state_ytd'],
-        check.ytd_gross=request.form['ytd_gross'],
-        check.ytd_deductions=request.form['ytd_deductions'],
-        check.ytd_net=request.form['ytd_net'],
-        check.total=request.form['total'],
-        check.bottom_deductions=request.form['bottom_deductions'],
-        check.net_pay=request.form['net_pay']
+        check.emp_name = request.form['emp_name'],
+        check.social = request.form['social'],
+        check.rep_period = request.form['rep_period'],
+        check.pay_date = request.form['pay_date'],
+        check.emp_num = request.form['emp_num'],
+        check.rate = request.form['rate'],
+        check.hours = request.form['hours'],
+        check.current_pay = request.form['current_pay'],
+        check.fica_medi = request.form['fica_medi'],
+        check.fica_social = request.form['fica_social'],
+        check.fica_medi_ytd = request.form['fica_medi_ytd'],
+        check.fica_social_ytd = request.form['fica_social_ytd'],
+        check.fed_tax = request.form['fed_tax'],
+        check.fed_ytd = request.form['fed_ytd'],
+        check.state_selection = request.form['state_selection'],
+        check.state_tax = request.form['state_tax'],
+        check.state_ytd = request.form['state_ytd'],
+        check.ytd_gross = request.form['ytd_gross'],
+        check.ytd_deductions = request.form['ytd_deductions'],
+        check.ytd_net = request.form['ytd_net'],
+        check.total = request.form['total'],
+        check.bottom_deductions = request.form['bottom_deductions'],
+        check.net_pay = request.form['net_pay']
         session.add(check)
         session.commit()
         return redirect(url_for('my_home'))
@@ -504,7 +512,8 @@ def full_page_print(check_id):
             return render_template('fullpage.html', check=check)
     else:
         return abort(403)
-    
+
+
 @app.route('/frequentasked/')
 def frequent_questions():
     return render_template('faq.html')
