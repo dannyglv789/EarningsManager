@@ -132,7 +132,7 @@ def my_home():
         pic = login_session['picture']
         
         if user.is_member == True:
-            # if 365 day membership has expired, user.is_member is reset to False
+            # 365 day membership has expired, user.is_member is reset to False
             expiration_date = user.signup_date + timedelta(days=365)
             if datetime.today() <= expiration_date:
                 return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
@@ -141,7 +141,11 @@ def my_home():
                 user.is_member = False
                 session.add(user)
                 session.commit()
-                return render_template('myhome.html', stubs=stubs, statements=statements, pic=pic)
+                return render_template('myhome.html',
+                                       stubs=stubs,
+                                       statements=statements,
+                                       pic=pic
+                                       )
 
         # in this case, the user is logged in and not a member
         # they are instantly directed to their profile page.
