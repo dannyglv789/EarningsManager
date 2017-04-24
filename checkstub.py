@@ -64,7 +64,7 @@ def fbconnect():
     result = h.request(url, 'GET')[1]
     data = json.loads(result)
     print data
-    
+
     # The token must be stored in the login_session in order to properly logout
     login_session['access_token'] = token
     login_session['facebook_id'] = data["id"]
@@ -81,7 +81,6 @@ def fbconnect():
         session.commit()
         login_session['email'] = email
 
-    
     # Get user picture
     url = 'https://graph.facebook.com/v2.8/me/picture?access_token=%s&redirect=0&height=200&width=200' % token
     h = httplib2.Http()
@@ -89,11 +88,9 @@ def fbconnect():
     data = json.loads(result)
     print data
     login_session['picture'] = data["data"]["url"]
-#    login_session['user_id'] = user_id
-
     return "logged in"
 
-    
+
 @app.route('/logout/')
 def logout():
     if check_login_and_csrf() == True:
@@ -120,7 +117,7 @@ def my_home():
         stubs = session.query(Check).filter_by(creator=user.id)
         statements = session.query(Check_2).filter_by(creator=user.id)
         pic = login_session['picture']
-        
+
         if user.is_member == True:
             # 365 day membership has expired, user.is_member is reset to False
             expiration_date = user.signup_date + timedelta(days=365)

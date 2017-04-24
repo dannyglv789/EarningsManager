@@ -277,3 +277,10 @@ float:right;
 #footer a{
 	text-decoration:none;
 }
+
+@media only screen and (min-width: 375px) and (max-device-width: 480px){
+	#check-container{
+		display:none;
+	}
+
+}
